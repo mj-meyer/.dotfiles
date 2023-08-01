@@ -1,11 +1,14 @@
-packages:
-  - build-essential
-  - libssl-dev
-  - llvm
-  - python3-pip
-  - python-is-python3
-  - vim
-  - less
+# Packages for linux.
+# I'm not using these, but keeping it as an example
+#
+# packages:
+#   - build-essential
+#   - libssl-dev
+#   - llvm
+#   - python3-pip
+#   - python-is-python3
+#   - vim
+#   - less
 
 brew:
   taps:
@@ -91,8 +94,8 @@ brew:
     - duf
 
 dotfiles:
-  repo: 'https://github.com/shmileee/dotfiles'
-  branch: 'master'
+  repo: "https://github.com/mj-meyer/.dotfiles"
+  branch: "master"
 
 neovim:
   build_from_source: false
@@ -170,7 +173,7 @@ asdf_plugins:
     global: 3.8.1
 
 golang:
-  path: '{{ ansible_user_dir }}/.go'
+  path: "{{ ansible_user_dir }}/.go"
   packages:
     - golang.org/x/tools/gopls@latest
 
