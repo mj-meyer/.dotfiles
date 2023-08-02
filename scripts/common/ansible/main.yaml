@@ -13,8 +13,8 @@
     - name: oh-my-zsh
       tags: oh-my-zsh
 
-    # - name: fonts
-    #   tags: fonts
+    - name: fonts
+      tags: fonts
 
     # - name: dotfiles
     #   tags: dotfiles

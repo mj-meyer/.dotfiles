@@ -15,7 +15,6 @@ brew:
     - alacritty
     - discord
     - docker
-    - font-hack-nerd-font
     - iterm2
     - karabiner-elements
     - neovide
