@@ -9,85 +9,51 @@
 #   - python-is-python3
 #   - vim
 #   - less
-
 brew:
-  taps:
-    - aws/tap
-    - carlocab/personal
-    - homebrew/bundle
-    - homebrew/cask
-    - homebrew/cask-fonts
-    - homebrew/core
-    - cloudflare/cloudflare
   casks:
     - 1password
     - alacritty
-    - alt-tab
-    - aws-vault
-    - brave-browser
-    - cloudflare/cloudflare/cf-terraforming
-    - font-fira-code-nerd-font
-    - hiddenbar
-    - kdiff3
-    - multipass
-    - rectangle
+    - discord
+    - docker
+    - font-hack-nerd-font
+    - iterm2
+    - karabiner-elements
+    - neovide
+    - obsidian
+    - raycast
+    - rocket
     - slack
+    - spotify
     - telegram
-    - tunnelblick
+    - visual-studio-code
+    - whatsapp
   packages:
     common:
-      - asciinema
-      - autoconf
-      - automake
-      - awscli
-      - azure-cli
-      - bat
-      - codespell
-      - coreutils
-      - direnv
-      - dos2unix
-      - dust
-      - exa
+      - cargo-c
+      - cmake
+      - cmatrix
       - fd
       - fzf
       - gh
-      - ghq
-      - git-delta
-      - hadolint
-      - highlight
-      - jq
-      - jsonnet
-      - k9s
-      - kustomize
+      - go
       - lazygit
-      - lua-language-server
-      - p7zip
-      - packer
-      - pkg-config
-      - pre-commit
-      - python-yq
+      - neovim
+      - nvm
+      - openssl
+      - pnpm
+      - python
       - ripgrep
-      - sponge
-      - terraform-docs
-      - tflint
-      - tfsec
-      - tldr
-      - tre-command
-      - tree
-      - tree-sitter
-      - yamllint
+      - stow
+      - terraform
+      - tmux
+      - wget
+      - yarn
       - zoxide
     darwin:
-      - carlocab/personal/unrar
-      - dockutil
-      - switchaudio-osx
-      - ffmpeg
-      - gawk
-      - gnu-getopt
-      - gnu-sed
-      - watch
-      - wget
-      - xz
+      - koekeishiya/formulae/skhd
+      - koekeishiya/formulae/yabai
+      - libgit2
+      - romkatv/powerlevel10k/powerlevel10k
     linux: []
   packages_from_source:
     - duf
