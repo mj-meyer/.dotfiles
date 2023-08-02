@@ -76,7 +76,10 @@ setup_all() {
   if linux; then
     "${target}/scripts/linux/install_dependencies.sh"
   fi
+  
+  sudo -v  # prompt for sudo password
   "${target}/scripts/common/install_brew.sh"
+  
   if macos; then
     brew install ansible
   fi

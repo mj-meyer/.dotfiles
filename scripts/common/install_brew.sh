@@ -11,7 +11,11 @@ install_brew() {
     return 0
   fi
 
-  export NONINTERACTIVE=1
+  # Prompt for sudo password
+  echo "This script requires sudo access to install homebrew"
+  sudo -v
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # shellcheck disable=SC2016
