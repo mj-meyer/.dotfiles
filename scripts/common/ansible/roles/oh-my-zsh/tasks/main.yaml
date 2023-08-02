@@ -1,0 +1,29 @@
+- block:
+    - name: Clone oh-my-zsh
+      git:
+        repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+        dest: "{{ ansible_user_dir }}/.oh-my-zsh"
+        accept_hostkey: yes
+
+    - name: Check if oh-my-zsh is installed
+      stat:
+        path: "{{ ansible_user_dir }}/.oh-my-zsh"
+      register: omzsh
+
+    - name: Install oh-my-zsh
+      shell: "{{ ansible_user_dir }}/.oh-my-zsh/tools/install.sh"
+      when: not omzsh.stat.exists
+
+    - name: Clone powerlevel10k theme
+      git:
+        repo: "https://github.com/romkatv/powerlevel10k.git"
+        dest: "{{ ansible_user_dir }}/.oh-my-zsh/themes/powerlevel10k"
+        accept_hostkey: yes
+
+    # - name: Cloning custom plugins
+    #   git:
+    #     repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    #     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    #     accept_hostkey: yes
+
+  tags: oh-my-zsh_install

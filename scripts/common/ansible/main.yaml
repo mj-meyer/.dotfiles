@@ -10,6 +10,9 @@
     - name: common
       tags: common
 
+    - name: oh-my-zsh
+      tags: oh-my-zsh
+
     # - name: fonts
     #   tags: fonts
 
