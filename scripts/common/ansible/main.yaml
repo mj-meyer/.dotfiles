@@ -10,32 +10,29 @@
     - name: common
       tags: common
 
-    - name: fonts
-      tags: fonts
+    # - name: fonts
+    #   tags: fonts
 
-    - name: dotfiles
-      tags: dotfiles
+    # - name: dotfiles
+    #   tags: dotfiles
 
-    - name: fish
-      tags: fish
+    # - name: fish
+    #   tags: fish
 
-    - name: neovim
-      tags: neovim
+    # - name: neovim
+    #   tags: neovim
 
-    - name: lunarvim
-      tags: lunarvim
+    # - name: lunarvim
+    #   tags: lunarvim
 
-    - name: asdf
-      tags: asdf
+    # - name: go
+    #   tags: go
 
-    - name: go
-      tags: go
+    # - name: docker
+    #   tags: docker
 
-    - name: docker
-      tags: docker
+    # - name: tmux
+    #   tags: tmux
 
-    - name: tmux
-      tags: tmux
-
-    - name: system_defaults
-      tags: system_defaults
+    # - name: system_defaults
+    #   tags: system_defaults
