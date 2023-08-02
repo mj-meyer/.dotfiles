@@ -1,9 +1,10 @@
 ---
-
-- name: "install packages"
-  community.general.npm:
-    name: '{{ item }}'
-    global: true
-    executable: '{{ ansible_user_dir }}/.asdf/shims/npm'
-  with_items: '{{ nodejs.packages }}'
-  when: nodejs.packages
+# This is using asdf. Fina another solution.
+#
+# - name: "install packages"
+#   community.general.npm:
+#     name: '{{ item }}'
+#     global: true
+#     executable: '{{ ansible_user_dir }}/.asdf/shims/npm'
+#   with_items: '{{ nodejs.packages }}'
+#   when: nodejs.packages
