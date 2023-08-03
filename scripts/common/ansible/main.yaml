@@ -25,8 +25,8 @@
     # - name: neovim
     #   tags: neovim
 
-    # - name: lunarvim
-    #   tags: lunarvim
+    - name: lunarvim
+      tags: lunarvim
 
     # - name: go
     #   tags: go
