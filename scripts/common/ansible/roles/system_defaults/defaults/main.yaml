@@ -6,10 +6,10 @@ osx_global_defaults:
   #########################################
 
   - { name: "set sidebar icon size to medium", domain: NSGlobalDomain, key: NSTableViewDefaultSizeMode, type: int, value: 2 }
-  - { name: "always show scrollbar", domain: NSGlobalDomain, key: AppleShowScrollBars, type: string, value: Always }
-  - { name: "disable the over-the-top focus ring animation", domain: NSGlobalDomain, key: NSUseAnimatedFocusRing, type: bool, value: false }
+  # - { name: "always show scrollbar", domain: NSGlobalDomain, key: AppleShowScrollBars, type: string, value: Always }
+  # - { name: "disable the over-the-top focus ring animation", domain: NSGlobalDomain, key: NSUseAnimatedFocusRing, type: bool, value: false }
   - { name: "increase window resize speed for cocoa applications", domain: NSGlobalDomain, key: NSWindowResizeTime, type: float, value: 0.001 }
-  - { name: "save to disk (not to icloud) by default", domain: NSGlobalDomain, key: NSDocumentSaveNewDocumentsToCloud, type: bool, value: false }
+  # - { name: "save to disk (not to icloud) by default", domain: NSGlobalDomain, key: NSDocumentSaveNewDocumentsToCloud, type: bool, value: false }
   - { name: "disable the “are you sure you want to open this application?” dialog", domain: com.apple.LaunchServices, key: LSQuarantine, type: bool, value: false }
   - { name: "disable automatic capitalization as it’s annoying when typing code", domain: NSGlobalDomain, key: NSAutomaticCapitalizationEnabled, type: bool, value: false }
   - { name: "disable smart dashes as they’re annoying when typing code", domain: NSGlobalDomain, key: NSAutomaticDashSubstitutionEnabled, type: bool, value: false }
@@ -20,9 +20,8 @@ osx_global_defaults:
   #########################################
   # Finder
   #########################################
-
   - { name: "allow quitting via ⌘ + q; doing so will also hide desktop icons", domain: com.apple.finder, key: QuitMenuItem, type: bool, value: true }
-  - { name: "disable window animations and get info animations", domain: com.apple.finder, key: DisableAllAnimations, type: bool, value: true }
+  # - { name: "disable window animations and get info animations", domain: com.apple.finder, key: DisableAllAnimations, type: bool, value: true }
   - { name: "set desktop as the default location for new finder windows", domain: com.apple.finder, key: NewWindowTarget, type: string, value: "PfDe" }
   - { name: "set target path for new finder windows", domain: com.apple.finder, key: NewWindowTargetPath, type: string, value: "file://{{ lookup('env', 'HOME') }}/Desktop/" }
   - { name: "show icons for hard drives, servers, and removable media on the desktop", domain: com.apple.finder, key: ShowExternalHardDrivesOnDesktop, type: bool, value: true }
@@ -86,12 +85,13 @@ osx_global_defaults:
   # Screenshots
   #########################################
 
-  - { name: "disable shadow in screenshots", domain: com.apple.screencapture, key: disable-shadow, type: bool, value: true }
-  - { name: "remove date and time from the screenshot file names", domain: com.apple.screencapture, key: include-date, type: bool, value: false }
-  - { name: "save screenshots to the screenshots folder", domain: com.apple.screencapture, key: location, type: string, value: "~/Pictures/Screenshots" }
-  - { name: "display thumbnail after taking a screenshot", domain: com.apple.screencapture, key: show-thumbnail, type: bool, value: true }
-  # other options: BMP, GIF, JPG, PDF, TIFF
-  - { name: "save screenshots in png format", domain: com.apple.screencapture, key: type, type: string, value: "png" }
+  # Disabled as I use Cleanshot for screenshots.
+  # - { name: "disable shadow in screenshots", domain: com.apple.screencapture, key: disable-shadow, type: bool, value: true }
+  # - { name: "remove date and time from the screenshot file names", domain: com.apple.screencapture, key: include-date, type: bool, value: false }
+  # - { name: "save screenshots to the screenshots folder", domain: com.apple.screencapture, key: location, type: string, value: "~/Pictures/Screenshots" }
+  # - { name: "display thumbnail after taking a screenshot", domain: com.apple.screencapture, key: show-thumbnail, type: bool, value: true }
+  # # other options: BMP, GIF, JPG, PDF, TIFF
+  # - { name: "save screenshots in png format", domain: com.apple.screencapture, key: type, type: string, value: "png" }
 
   #########################################
   # Keyboard
@@ -136,15 +136,3 @@ osx_global_defaults:
   - { name: "quit printer app once jobs are complete", domain: com.apple.print.PrintingPrefs, key: 'Quit When Finished', type: boolean, value: true }
   - { name: "don't open imagecapture when camera plugged in", domain: com.apple.ImageCapture, key: disableHotPlug, type: boolean, value: true }
 
-osx_alt_tab_defaults:
-  - { name: "alt-tab | show windows from screen showing alt-tab", domain: com.lwouis.alt-tab-macos, key: screensToShow, type: string, value: 1, state: present }
-  - { name: "alt-tab | show windows active space only", domain: com.lwouis.alt-tab-macos, key: spacesToShow, type: string, value: 1, state: present }
-  - { name: "alt-tab | do not send crash reports", domain: com.lwouis.alt-tab-macos, key: crashPolicy, type: string, value: 0, state: present }
-  - { name: "alt-tab | disable automatic updates", domain: com.lwouis.alt-tab-macos, key: SUAutomaticallyUpdate, type: bool, value: false, state: present }
-  - { name: "alt-tab | disable automatic update checks", domain: com.lwouis.alt-tab-macos, key: SUEnableAutomaticChecks, type: bool, value: false, state: present }
-  # use lowercase `\u` to pass unicode
-  - { name: "alt-tab | set shortcuts #1", domain: com.lwouis.alt-tab-macos, key: holdShortcut, type: string, value: "\u2318", state: present }
-
-osx_rectangle_defaults:
-  - { name: "rectangle | set spectacle-compatible shortcuts", domain: com.knollsoft.Rectangle, key: alternateDefaultShortcuts, type: int, value: 0, state: present }
-  - { name: "rectangle | launch on login", domain: com.knollsoft.Rectangle, key: launchOnLogin, type: int, value: 1, state: present }
