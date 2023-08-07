@@ -34,8 +34,8 @@
     # - name: docker
     #   tags: docker
 
-    # - name: tmux
-    #   tags: tmux
+    - name: tmux
+      tags: tmux
 
     - name: system_defaults
       tags: system_defaults
