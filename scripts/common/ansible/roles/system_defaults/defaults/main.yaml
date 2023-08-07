@@ -131,7 +131,7 @@ osx_global_defaults:
   - { name: "block pop-up windows", domain: com.apple.safari, key: WebKitJavaScriptCanOpenWindowsAutomatically, type: bool, value: false }
   - { name: "javascript cannot open windows automatically", domain: com.apple.safari, key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically, type: bool, value: false }
   - { name: "enable do not track", domain: com.apple.safari, key: SendDoNotTrackHTTPHeader, type: bool, value: true }
-  - { name: "don't use natural scrolling", domain: NSGlobalDomain, key: com.apple.swipescrolldirection, type: bool, value: false }
+  - { name: "don't use natural scrolling", domain: NSGlobalDomain, key: com.apple.swipescrolldirection, type: bool, value: true }
   - { name: "set dark mode", domain: NSGlobalDomain, key: AppleInterfaceStyle, type: string, value: Dark }
   - { name: "quit printer app once jobs are complete", domain: com.apple.print.PrintingPrefs, key: 'Quit When Finished', type: boolean, value: true }
   - { name: "don't open imagecapture when camera plugged in", domain: com.apple.ImageCapture, key: disableHotPlug, type: boolean, value: true }
