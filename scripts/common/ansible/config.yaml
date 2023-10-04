@@ -13,19 +13,26 @@ brew:
   casks:
     - 1password
     - alacritty
+    - audio-hijack
+    - centered
     - discord
     - docker
     - iterm2
+    - insomnia
     - karabiner-elements
+    - loopback
     - neovide
     - obsidian
     - raycast
     - rocket
+    - responsively
+    - setapp
     - slack
     - spotify
     - telegram
     - visual-studio-code
     - whatsapp
+    - zoom
   packages:
     common:
       - cargo-c
