@@ -45,6 +45,8 @@ vim.api.nvim_set_keymap('i', 'kj', '<ESC>', { noremap = true, silent = true })
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+
+vim.api.nvim_set_keymap('v', '<leader>lf', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -218,6 +220,10 @@ lvim.builtin.treesitter.highlight.enable = true
 --   },
 -- }
 
+
+require("luasnip/loaders/from_vscode").load { paths = {
+  "~/.dotfiles/lvim/.config/lvim/snippets/vscode-es7-javascript-react-snippets" } }
+require("luasnip/loaders/from_vscode").load { paths = { "~/.dotfiles/lvim/.config/lvim/snippets/mj-snippets" } }
 -- Additional Plugins
 lvim.plugins = {
   {
@@ -359,6 +365,26 @@ lvim.plugins = {
   { "mg979/vim-visual-multi" },
   { "ThePrimeagen/harpoon" },
   { "mxsdev/nvim-dap-vscode-js" },
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = { "fugitive" }
+  },
+  { "shumphrey/fugitive-gitlab.vim" }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -386,6 +412,12 @@ formatters.setup {
     filetypes = { "javascript", "typescript", "typescriptreact", "css", "scss", "html", "json", "yaml", "markdown",
       "graphql", "md", "txt", },
   },
+}
+
+
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "eslint", filetypes = { "typescript", "typescriptreact" } }
 }
 
 -- local opts = {

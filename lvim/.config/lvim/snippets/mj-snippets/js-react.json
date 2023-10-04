@@ -1,0 +1,46 @@
+{
+  "React funtion component exported": {
+    "prefix": "rfce",
+    "body": [
+      "const ${TM_FILENAME_BASE}: React.FC = () => {",
+      "\treturn (",
+      "\t\t${1}",
+      "\t)",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "description": "React function component with export"
+  },
+  "React Context with Provider": {
+    "prefix": "rctxp",
+    "body": [
+      "import React, { createContext, useContext, ReactNode } from 'react';",
+      "",
+      "type ${1:ContextName}Props = {",
+      "\tchildren: ReactNode;",
+      "};",
+      "",
+      "const ${1:ContextName}Context = createContext<${2:ContextType} | undefined>(undefined);",
+      "",
+      "export const ${1:ContextName}Provider: React.FC<${1:ContextName}Props> = ({ children }) => {",
+      "\tconst value = ${3:initializeValue};",
+      "",
+      "\treturn (",
+      "\t\t<${1:ContextName}Context.Provider value={value}>",
+      "\t\t\t{children}",
+      "\t\t</${1:ContextName}Context.Provider>",
+      "\t);",
+      "}",
+      "",
+      "export const use${1:ContextName} = () => {",
+      "\tconst context = useContext(${1:ContextName}Context);",
+      "\tif (!context) {",
+      "\t\tthrow new Error('use${1:ContextName} must be used within a ${1:ContextName}Provider');",
+      "\t}",
+      "\treturn context;",
+      "};"
+    ],
+    "description": "React context with provider and hook"
+  }
+}
