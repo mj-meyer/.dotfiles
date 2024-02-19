@@ -99,7 +99,7 @@ osx_global_defaults:
 
   - { name: "disable press-and-hold for keys in favor of key repeat", domain: NSGlobalDomain, key: ApplePressAndHoldEnabled, type: bool, value: false }
   - { name: "set a blazingly fast keyboard repeat rate", domain: NSGlobalDomain, key: KeyRepeat, type: int, value: 1 }
-  - { name: "set key repeat value", domain: NSGlobalDomain, key: InitialKeyRepeat, type: int, value: 10 }
+  - { name: "set key repeat value", domain: NSGlobalDomain, key: InitialKeyRepeat, type: float, value: 10 }
   # (e.g. enable Tab in modal dialogs)
   - { name: "enable full keyboard access for all controls", domain: NSGlobalDomain, key: AppleKeyboardUIMode, type: int, value: 3 }
 
