@@ -127,6 +127,12 @@ lvim.builtin.which_key.mappings["h"] = {
   [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
 
+-- map v to split window
+lvim.builtin.which_key.mappings["v"] = {
+  name = "+Vsplit",
+  v = { "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Vsplit" },
+}
+
 
 -- Test Harpoon keybindings
 -- local mark = require("harpoon.mark")
