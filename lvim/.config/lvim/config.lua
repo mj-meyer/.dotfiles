@@ -449,7 +449,12 @@ formatters.setup {
 
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "eslint", filetypes = { "typescript", "typescriptreact" } }
+  { command = "eslint", filetypes = { "typescript", "typescriptreact" } },
+  -- {
+  --   command = "eslint_d",
+  --   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue", "svelte" }
+  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  -- },
 }
 
 -- local opts = {
