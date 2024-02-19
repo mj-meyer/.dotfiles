@@ -457,11 +457,6 @@ linters.setup {
   -- },
 }
 
--- local opts = {
---   -- root_dir = root_pattern("workspace.json")
--- }
--- require 'lvim.lsp.manager'.setup("angularls", opts)
-
 
 -- local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 require("dap-vscode-js").setup {
