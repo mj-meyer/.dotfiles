@@ -73,6 +73,7 @@ lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
 vim.api.nvim_set_keymap('v', '<leader>lf', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -457,6 +458,22 @@ linters.setup {
   -- },
 }
 
+require("lvim.lsp.manager").setup("cssls", {
+  settings = {
+    css = {
+      validate = true,
+      lint = {
+        unkownAtRules = "ignore",
+      }
+    },
+    scss = {
+      validate = true,
+      lint = {
+        unkownAtRules = "ignore",
+      }
+    },
+  }
+})
 
 -- local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 require("dap-vscode-js").setup {
@@ -498,9 +515,6 @@ for _, language in ipairs { "typescript", "javascript", "typescriptreact" } do
 
   }
 end
-
-
-
 
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
