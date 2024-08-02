@@ -141,3 +141,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+
+alias ls='eza --icons=always'
+
