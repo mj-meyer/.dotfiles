@@ -26,9 +26,11 @@ local act = wezterm.action
 local config = {
   background = {
     b.get_background(dark_opacity, light_opacity) },
-  macos_window_background_blur = 20,
 
-  font_size = 16,
+  macos_window_background_blur = 40,
+  window_background_opacity = 0.85,
+
+  font_size = 22,
   line_height = 1.1,
   font = wezterm.font_with_fallback({
     { family = "Operator Mono Lig",   italic = true },
@@ -36,7 +38,7 @@ local config = {
     { family = "Hack Nerd Font Mono", weight = "Regular" },
   }),
   -- For example, changing the color scheme:
-  color_scheme = 'Tokyo Night',
+  color_scheme = 'Tokyo Night Moon',
 
   window_padding = {
     left = 40,
@@ -46,7 +48,7 @@ local config = {
   },
 
   set_environment_variables = {
-    BAT_THEME = h.is_dark() and "Catppuccin-mocha" or "Catppuccin-latte",
+    -- BAT_THEME = h.is_dark() and "Catppuccin-mocha" or "Catppuccin-latte",
     LC_ALL = "en_US.UTF-8",
     -- TODO: audit what other variables are needed
   },
