@@ -15,6 +15,9 @@ lvim.colorscheme = "tokyonight"
 lvim.transparent_window = true
 lvim.builtin.nvimtree.setup.view.float.enable = true
 
+-- optionally enable 24-bit colour
+-- vim.opt.termguicolors = true
+
 -- Float Nvimtree in middle of the screen
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.8  -- You can change this too
