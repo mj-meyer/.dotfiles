@@ -140,6 +140,7 @@ lvim.plugins = {
       require("lsp-file-operations").setup()
     end,
   },
+  { 'wakatime/vim-wakatime',        lazy = false },
 }
 
 -- LuaSnip configuration
