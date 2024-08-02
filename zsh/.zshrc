@@ -141,6 +141,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/mj.meyer/Library/Application Support/Herd/config/php/83/"
 
 alias ls='eza --icons=always'
 
+
+# Herd injected PHP binary.
+export PATH="/Users/mj.meyer/Library/Application Support/Herd/bin/":$PATH
