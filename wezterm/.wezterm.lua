@@ -30,7 +30,7 @@ local config = {
   macos_window_background_blur = 40,
   window_background_opacity = 0.85,
 
-  font_size = 22,
+  font_size = 18,
   line_height = 1.1,
   font = wezterm.font_with_fallback({
     { family = "Operator Mono Lig",   italic = true },
@@ -73,6 +73,8 @@ local config = {
     -- new window
     k.cmd_to_tmux_prefix("t", "c"),
     k.cmd_to_tmux_prefix("r", "r"),
+    k.cmd_to_tmux_prefix("y", "{"),
+
     -- nav windows by number
     k.cmd_to_tmux_prefix("1", "1"),
     k.cmd_to_tmux_prefix("2", "2"),
@@ -142,6 +144,15 @@ local config = {
         act.SendKey({ key = "\\" }),
       }),
     },
+    {
+      mods = "CMD",
+      key = "z",
+      action = act.Multiple({
+        act.SendKey({ mods = "CTRL", key = "b" }),
+        act.SendKey({ key = "z" }),
+      }),
+    },
+
 
     {
       mods = "CMD|SHIFT",

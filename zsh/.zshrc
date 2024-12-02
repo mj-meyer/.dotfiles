@@ -119,8 +119,8 @@ alias tf=terraform
 eval "$(zoxide init zsh)"
 
 # Can use \nvim if you don't want to use lvim
-alias nvim=lvim 
-export EDITOR='lvim'
+# alias nvim=lvim 
+# export EDITOR='lvim'
 
 export PATH="$HOME/.local/bin":$PATH
 
@@ -145,6 +145,24 @@ esac
 export HERD_PHP_83_INI_SCAN_DIR="/Users/mj.meyer/Library/Application Support/Herd/config/php/83/"
 
 alias ls='eza --icons=always'
+
+# nvim config launcher
+# TODO: investigate other distros
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+function nvims() {
+  #items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  items=("LazyVim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾 " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
+bindkey -s ^a "nvims\n"
 
 
 # Herd injected PHP binary.

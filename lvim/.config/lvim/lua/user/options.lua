@@ -8,7 +8,7 @@ lvim.transparent_window = true
 
 -- NvimTree
 lvim.builtin.nvimtree.setup.view.float.enable = true
-
+lvim.builtin.nvimtree.setup.filters.custom = {}
 -- Float Nvimtree in middle of the screen
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.8

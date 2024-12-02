@@ -115,21 +115,32 @@ lvim.plugins = {
     ft = { "fugitive" }
   },
   { "shumphrey/fugitive-gitlab.vim" },
-  {
-    "harrisoncramer/gitlab.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "stevearc/dressing.nvim",
-      "nvim-tree/nvim-web-devicons"
-    },
-    enabled = true,
-    build = function() require("gitlab.server").build(true) end,
-    config = function()
-      require("gitlab").setup()
-    end,
-  },
+  -- {
+  --   "harrisoncramer/gitlab.nvim",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "sindrets/diffview.nvim",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  --   enabled = true,
+  --   build = function() require("gitlab.server").build(true) end,
+  --   config = function()
+  --     require("gitlab").setup({
+  --       log_path = vim.fn.stdpath("cache") .. "/gitlab.nvim.log", -- Log path for the Go server
+  --       debug = { go_request = true, go_response = true }, -- Which values to log
+  --       reviewer_settings = {
+  --         diffview = {
+  --           imply_local = true, -- If true, will attempt to use --imply_local option when calling |:DiffviewOpen|
+  --         },
+  --       },
+  --       connection_settings = {
+  --         insecure = true, -- Like curl's --insecure option, ignore bad x509 certificates on connection
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "antosha417/nvim-lsp-file-operations",
     dependencies = {
@@ -141,6 +152,35 @@ lvim.plugins = {
     end,
   },
   { 'wakatime/vim-wakatime',        lazy = false },
+  -- {
+  --   "dreamsofcode-io/ChatGPT.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("chatgpt").setup({
+  --       async_api_key_cmd = "pass show openai/neovim",
+  --     })
+  --   end,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "folke/trouble.nvim",
+  --     "nvim-telescope/telescope.nvim"
+  --   }
+  -- },
+  -- {
+  --   url = 'https://gitlab.com/itaranto/plantuml.nvim',
+  --   config = function()
+  --     require('plantuml').setup({
+  --       renderer = {
+  --         type = 'image',
+  --         options = {
+  --           prog = 'open -a Preview',
+  --         }
+  --       },
+  --       render_on_write = true,
+  --     })
+  --   end,
+  -- },
 }
 
 -- LuaSnip configuration
