@@ -2,6 +2,8 @@
 
 This repository contains my personal dotfiles and setup scripts for macOS development environment.
 
+Test change
+
 ## 🏃 Quick Start
 
 Copy and paste this command into Terminal to get started:
