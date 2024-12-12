@@ -1,0 +1,28 @@
+---
+- name: "Install AWS CLI"
+  community.general.homebrew:
+    name: awscli
+    state: present
+  tags: homebrew
+
+- name: "Create AWS config directory"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.aws"
+    state: directory
+    mode: '0700'
+
+- name: "Setup AWS config"
+  ansible.builtin.template:
+    src: config.j2
+    dest: "{{ ansible_user_dir }}/.aws/config"
+    mode: '0600'
+  when: aws_config is defined
+
+- name: "Install AWS tools"
+  community.general.homebrew:
+    name:
+      - aws-vault
+      - aws-sam-cli
+      - aws-cdk
+    state: present
+  tags: homebrew 

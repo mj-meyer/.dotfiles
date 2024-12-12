@@ -2,17 +2,44 @@
 
 - name: "install tmux"
   community.general.homebrew:
-    name: tmux
+    name:
+      - tmux
+      - reattach-to-user-namespace
   tags: homebrew
 
-- name: "install tpm"
+- name: "ensure tmux plugin directory exists"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.tmux/plugins"
+    state: directory
+    mode: '0755'
+
+- name: "install tpm (tmux plugin manager)"
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
     version: master
+    update: yes
 
-- name: "install tmux plugins"
+- name: "install tmux plugins directly"
+  ansible.builtin.git:
+    repo: "https://github.com/{{ item.repo }}.git"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item.repo | split('/') | last }}"
+    version: "{{ item.branch | default('master') }}"
+    update: yes
+  with_items:
+    - { repo: 'christoomey/vim-tmux-navigator' }
+    - { repo: 'joshmedeski/t-smart-tmux-session-manager', branch: 'main' }
+    - { repo: 'janoamaral/tokyo-night-tmux' }
+
+- name: "install tmux plugins via tpm"
   ansible.builtin.command:
     cmd: "{{ ansible_user_dir }}/.tmux/plugins/tpm/bin/install_plugins"
   register: task
   changed_when: '"download success" in task.stdout'
+
+- name: "update tmux plugins"
+  ansible.builtin.command:
+    cmd: "{{ ansible_user_dir }}/.tmux/plugins/tpm/bin/update_plugins all"
+  register: update_task
+  changed_when: '"TMUX environment not set" not in update_task.stderr and update_task.rc == 0'
+  failed_when: false

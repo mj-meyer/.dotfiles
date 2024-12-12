@@ -10,80 +10,157 @@
 #   - vim
 #   - less
 brew:
+  taps:
+    - homebrew/bundle
+    - homebrew/services
+    - koekeishiya/formulae
+    - libsql/sqld
+    - localstack/tap
+    - oven-sh/bun
+    - stripe/stripe-cli
+    - tursodatabase/tap
+    - aws/tap
+    - hashicorp/tap
+
   casks:
     - 1password
     - alacritty
+    - arc
     - audio-hijack
-    - centered
+    - cursor
     - discord
-    - docker
-    - iterm2
+    - font-fira-code-nerd-font
+    - font-hack-nerd-font
+    - font-monaspace-nerd-font
+    - font-noto-sans-symbols-2
+    - font-powerline-symbols
+    - google-chrome
+    - homerow
     - insomnia
     - karabiner-elements
+    - linear-linear
     - loopback
-    - neovide
     - obsidian
+    - orbstack
     - raycast
-    - rocket
     - responsively
+    - rocket
     - setapp
     - slack
     - spotify
     - telegram
+    - typefully
+    - yaak
     - visual-studio-code
+    - wakatime
+    - wezterm
     - whatsapp
-    - zoom
+    - aws-vpn-client
+    - figma
+    - ngrok
+
   packages:
     common:
+      - ansible
+      - awscli
+      - bash
+      - bat
+      - bc
+      - caddy
       - cargo-c
       - cmake
       - cmatrix
+      - coreutils
+      - curl
+      - duf
+      - elixir
+      - emscripten
+      - exercism
+      - eza
       - fd
+      - feh
+      - fnm
       - fzf
+      - gawk
       - gh
+      - git-delta
+      - glab
+      - gleam
+      - gnu-sed
+      - gnupg
       - go
+      - graphviz
+      - jq
       - lazygit
-      - neovim
-      - nvm
-      - openssl
+      - nowplaying-cli
+      - pass
+      - plantuml
       - pnpm
-      - python
+      - python@3.11
       - ripgrep
+      - starship
       - stow
+      - telnet
       - terraform
       - tmux
       - wget
       - yarn
       - zoxide
+      - act
+      - commitizen
+      - deno
+      - docker-compose
+      - httpie
+      - vercel-cli
+      - aws-cdk
+      - aws-sam-cli
+      - aws-vault
+      - postgresql@14
+      - redis
+      - k6
+      - mkcert
+      - watchman
+      - neovim
     darwin:
       - koekeishiya/formulae/skhd
       - koekeishiya/formulae/yabai
-      - libgit2
-      - romkatv/powerlevel10k/powerlevel10k
+      - oven-sh/bun/bun
+      - stripe/stripe-cli/stripe
+      - tursodatabase/tap/turso
     linux: []
+
   packages_from_source:
     - duf
 
 dotfiles:
-  repo: "https://github.com/mj-meyer/.dotfiles"
-  branch: "master"
+  repo: "your-dotfiles-repo-url"
+  branch: "main"
+  stow_packages:
+    - git
+    - lazyvim
+    - lvim
+    - starship
+    - tmux
+    - wezterm
+    - window-management
+    - zsh
 
-neovim:
-  build_from_source: false
-  directory: "{{ ansible_user_dir }}/Development/repository/github.com/neovim/neovim"
-  build_dependencies:
-    - autoconf
-    - automake
-    - cmake
-    - curl
-    - doxygen
-    - g++
-    - gettext
-    - libtool
-    - libtool-bin
-    - ninja-build
-    - pkg-config
-    - unzip
+# neovim:
+#   build_from_source: false
+#   directory: "{{ ansible_user_dir }}/Development/repository/github.com/neovim/neovim"
+#   build_dependencies:
+#     - autoconf
+#     - automake
+#     - cmake
+#     - curl
+#     - doxygen
+#     - g++
+#     - gettext
+#     - libtool
+#     - libtool-bin
+#     - ninja-build
+#     - pkg-config
+#     - unzip
 
 golang:
   path: "{{ ansible_user_dir }}/.go"
@@ -93,6 +170,17 @@ golang:
 nodejs:
   packages:
     - yarn
+    - pnpm
+    - typescript
+    - ts-node
+    - create-next-app
+    - eslint
+    - prettier
+    - npm-check-updates
+    - tsx
+    - turbo
+    - vercel
+    - vite
 
 dockitems_disabled:
   - App Store
@@ -111,21 +199,27 @@ dockitems_disabled:
   - iTunes
 
 dockitems_enabled:
-  - name: Brave Browser
-    path: "/Applications/Brave Browser.app"
+  - name: Arc
+    path: "/Applications/Arc.app"
     pos: 1
-  - name: Alacritty
-    path: "/Applications/Alacritty.app"
+  - name: Obsidian
+    path: "/Applications/Obsidian.app"
     pos: 2
+  - name: Wezterm
+    path: "/Applications/Wezterm.app"
+    pos: 3
   - name: Slack
     path: "/Applications/Slack.app"
-    pos: 3
-  - name: Telegram
-    path: "/Applications/Telegram.app"
     pos: 4
+  - name: Whatsapp
+    path: "/Applications/Whatsapp.app"
+    pos: 5
+  - name: Discord
+    path: "/Applications/Discord.app"
+    pos: 6
   - name: Spotify
     path: "/Applications/Spotify.app"
-    pos: 5
+    pos: 7
 
 darwin_hotkeys:
   # remap "show spotlight search` to `⌘ + g`

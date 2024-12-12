@@ -1,5 +1,11 @@
 ---
 
+- name: "dockutil | ensure dockutil is installed"
+  community.general.homebrew:
+    name: dockutil
+    state: present
+  when: ansible_os_family == "Darwin"
+
 - name: "dockutil | get information on items to remove"
   ansible.builtin.command:
     cmd: dockutil --find '{{ item }}'

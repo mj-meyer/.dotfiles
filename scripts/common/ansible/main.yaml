@@ -13,29 +13,20 @@
     - name: oh-my-zsh
       tags: oh-my-zsh
 
-    - name: fonts
-      tags: fonts
+    - name: dotfiles
+      tags: dotfiles
 
-    # - name: dotfiles
-    #   tags: dotfiles
-
-    # - name: fish
-    #   tags: fish
-
-    # - name: neovim
-    #   tags: neovim
-
-    - name: lunarvim
-      tags: lunarvim
-
-    # - name: go
-    #   tags: go
-
-    # - name: docker
-    #   tags: docker
+    # - name: lunarvim      # Commented out - installing manually
+    #   tags: lunarvim
 
     - name: tmux
       tags: tmux
 
     - name: system_defaults
       tags: system_defaults
+
+    - name: node
+      tags: node
+
+    - name: aws
+      tags: aws

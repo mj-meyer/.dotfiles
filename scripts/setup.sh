@@ -67,9 +67,36 @@ download_repository() {
   fi
 }
 
+ensure_pip() {
+  if ! command -v pip3 &> /dev/null; then
+    echo "⚪ Setting up pip..."
+    # Use Homebrew's Python specifically
+    if brew list python@3.11 &>/dev/null; then
+      /opt/homebrew/bin/python3 -m ensurepip --upgrade --user
+      /opt/homebrew/bin/python3 -m pip install --upgrade pip --user
+    else
+      echo "⚪ Installing Python via Homebrew..."
+      brew install python@3.11
+      /opt/homebrew/bin/python3 -m ensurepip --upgrade --user
+      /opt/homebrew/bin/python3 -m pip install --upgrade pip --user
+    fi
+  fi
+}
+
 setup_all() {
   if macos; then
     install_xcode_tools
+    
+    # Install Rosetta 2 on Apple Silicon Macs
+    if [[ $(uname -m) == 'arm64' ]]; then
+      echo "⚪ Checking Rosetta 2 installation..."
+      if ! pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto > /dev/null 2>&1; then
+        echo "⚪ Installing Rosetta 2..."
+        softwareupdate --install-rosetta --agree-to-license
+      else
+        echo "✅ Rosetta 2 already installed."
+      fi
+    fi
   fi
 
   test -d "$target" || download_repository
@@ -80,9 +107,33 @@ setup_all() {
   sudo -v  # prompt for sudo password
   "${target}/scripts/common/install_brew.sh"
   
+  # Ensure brew is in PATH immediately after installation
   if macos; then
+    if [[ $(uname -m) == 'arm64' ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+      eval "$(/usr/local/bin/brew shellenv)"
+    fi
+  else
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+  
+  # Verify brew is available
+  if ! command -v brew &> /dev/null; then
+    echo "❌ Homebrew installation succeeded but 'brew' command not found."
+    echo "This is likely a PATH issue. Please restart your terminal and try again."
+    exit 1
+  fi
+  
+  # Ensure pip is available before ansible
+  ensure_pip
+  
+  # Install ansible if not present
+  if ! command -v ansible &> /dev/null; then
+    echo "⚪ Installing Ansible..."
     brew install ansible
   fi
+  
   "${target}/scripts/common/ansible.sh" --all
 }
 

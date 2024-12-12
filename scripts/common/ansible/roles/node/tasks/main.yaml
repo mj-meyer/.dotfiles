@@ -8,3 +8,28 @@
 #     executable: '{{ ansible_user_dir }}/.asdf/shims/npm'
 #   with_items: '{{ nodejs.packages }}'
 #   when: nodejs.packages
+
+- name: "Install fnm (Fast Node Manager)"
+  community.general.homebrew:
+    name: fnm
+    state: present
+  tags: homebrew
+
+- name: "Install Node.js LTS"
+  ansible.builtin.shell: |
+    export SHELL=/bin/zsh
+    source {{ ansible_user_dir }}/.zshrc
+    fnm install --lts
+  args:
+    executable: /bin/zsh
+
+# Install essential global tools with npm for maximum compatibility
+- name: "Install minimal global development tools"
+  ansible.builtin.npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - npm-check-updates     # For checking dependency updates
+    - typescript           # Useful for type checking in any editor
+    - http-server         # Quick static file serving
+  when: nodejs.minimal_globals is defined

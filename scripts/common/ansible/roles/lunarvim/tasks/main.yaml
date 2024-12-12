@@ -9,12 +9,6 @@
   retries: 3
   delay: 5
 
-# - name: "create config dir"
-#   ansible.builtin.file:
-#     path: "{{ ansible_user_dir }}/.config/lvim"
-#     state: directory
-#     mode: "0700"
-
 - name: "install"
   ansible.builtin.command: /tmp/install-lunarvim.sh --install-dependencies --yes
   args:

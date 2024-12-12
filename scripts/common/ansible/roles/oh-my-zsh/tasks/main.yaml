@@ -14,16 +14,22 @@
       shell: "{{ ansible_user_dir }}/.oh-my-zsh/tools/install.sh"
       when: not omzsh.stat.exists
 
-    - name: Clone powerlevel10k theme
-      git:
-        repo: "https://github.com/romkatv/powerlevel10k.git"
-        dest: "{{ ansible_user_dir }}/.oh-my-zsh/themes/powerlevel10k"
-        accept_hostkey: yes
+    - name: Install starship
+      community.general.homebrew:
+        name: starship
+        state: present
+      tags: homebrew
 
-    - name: Cloning custom plugins
+    - name: "Clone custom plugins"
       git:
-        repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-        dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+        repo: "https://github.com/{{ item.repo }}"
+        dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
         accept_hostkey: yes
+      with_items:
+        - {
+            name: "zsh-syntax-highlighting",
+            repo: "zsh-users/zsh-syntax-highlighting.git",
+          }
+      # Note: 'git' plugin is built into oh-my-zsh, so we don't need to install it
 
   tags: oh-my-zsh_install
