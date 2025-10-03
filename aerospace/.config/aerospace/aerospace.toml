@@ -28,7 +28,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 80
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -210,3 +210,17 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+
+# Window rules
+# https://nikitabobko.github.io/AeroSpace/guide#callbacks
+#
+# To get app-id:
+# - https://nikitabobko.github.io/AeroSpace/goodness#popular-apps-ids
+# - `aerospace list-apps`
+
+# Fix macOS native tabs e.g. Finder, Ghostty
+# Now it must be floating on start, then you can tile it manually
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
+run = ['layout floating']
+check-further-callbacks = true

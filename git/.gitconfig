@@ -1,5 +1,9 @@
 [alias]
   undo = reset --soft HEAD^
+	smu = submodule update --init --recursive
+  smi = submodule update --remote --rebase
+	sms = submodule status
+	sma = submodule add
 
 [push]
   autoSetupRemote = true
@@ -47,3 +51,5 @@
     plus-emph-style = syntax bold "#007800"
     plus-style = syntax "#004433"
     whitespace-error-style = "#280050"
+[user]
+	email = hello@mjmeyer.dev

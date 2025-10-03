@@ -134,7 +134,8 @@ export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 eval "$(starship init zsh)"
 
 # pnpm
-export PNPM_HOME="/Users/mj.meyer/Library/pnpm"
+# export PATH="/opt/homebrew/opt/pnpm@9/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/pnpm/10.5.2/bin:$PATH"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -145,6 +146,10 @@ esac
 export HERD_PHP_83_INI_SCAN_DIR="/Users/mj.meyer/Library/Application Support/Herd/config/php/83/"
 
 alias ls='eza --icons=always'
+# alias hc='~/Downloads/hc-v0.14.0-mac/hc'
+alias hc='~/Work/HyperCinema/toolkit-cli/dist/hc'
+alias docker=podman
+alias kc=kubectl
 
 # nvim config launcher
 # TODO: investigate other distros
@@ -164,6 +169,22 @@ function nvims() {
 
 bindkey -s ^a "nvims\n"
 
-
 # Herd injected PHP binary.
 export PATH="/Users/mj.meyer/Library/Application Support/Herd/bin/":$PATH
+
+eval "$(rbenv init - --no-rehash zsh)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/Users/mjmeyer/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/Users/mjmeyer/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+export LEDGER_FILE=~/Personal/coinops/2025.journal
+
+# opencode
+export PATH=/Users/mjmeyer/.opencode/bin:$PATH
+
+
+alias claude="/Users/mjmeyer/.claude/local/claude"
