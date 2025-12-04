@@ -9,10 +9,6 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# ~/.tmux/plugins
-export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
-# ~/.config/tmux/plugins
-# export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 eval "$(fnm env --use-on-cd)"
 

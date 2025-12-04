@@ -125,7 +125,7 @@ eval "$(zoxide init zsh)"
 export PATH="$HOME/.local/bin":$PATH
 
 # ~/.tmux/plugins
-export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+# export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 # ~/.config/tmux/plugins
 # export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
@@ -188,3 +188,33 @@ export PATH=/Users/mjmeyer/.opencode/bin:$PATH
 
 
 alias claude="/Users/mjmeyer/.claude/local/claude"
+
+# bun completions
+[ -s "/Users/mjmeyer/.bun/_bun" ] && source "/Users/mjmeyer/.bun/_bun"
+
+# sesh session manager (triggered by cmd+k via F13 when not in tmux)
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list --icons | fzf --height 70% --reverse \
+      --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+      --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+      --bind 'tab:down,btab:up' \
+      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+      --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+      --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+      --preview-window 'right:55%' \
+      --preview 'sesh preview {}')
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect "$session"
+  }
+}
+
+zle -N sesh-sessions
+bindkey '^]' sesh-sessions

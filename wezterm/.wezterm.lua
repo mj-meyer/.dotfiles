@@ -31,7 +31,7 @@ local config = {
 	macos_window_background_blur = 40,
 	window_background_opacity = 0.85,
 
-	font_size = 14,
+	font_size = 18,
 	line_height = 1.1,
 	font = wezterm.font_with_fallback({
 		{ family = "Operator Mono Lig", italic = true },
@@ -69,8 +69,12 @@ local config = {
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
 
-		-- tmux session manager
-		k.cmd_to_tmux_prefix("k", "T"),
+		-- sesh session manager (sends ctrl+] which tmux and zsh can bind)
+		{
+			mods = "CMD",
+			key = "k",
+			action = act.SendString("\x1d"),
+		},
 		-- new window
 		k.cmd_to_tmux_prefix("t", "c"),
 		k.cmd_to_tmux_prefix("r", "r"),
