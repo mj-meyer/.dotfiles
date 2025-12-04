@@ -1,0 +1,10 @@
+window-colorspace = display-p3
+font-family = "Operator Mono Lig"
+font-feature = +liga
+font-feature = +kern
+# font-family = "Hack Nerd Font Mono"
+# font-family = "Operator Mono Lig Book"
+# font-family-bold = "Operator Mono Lig Medium"
+# font-family-italic = "Operator Mono Lig Book Italic"
+# font-family-bold-italic = "Operator Mono Lig Medium Italic"
+theme = "TokyoNight Moon"
