@@ -1,0 +1,10 @@
+# Sesh configuration
+# https://github.com/joshmedeski/sesh
+
+[default_session]
+preview_command = "eza --all --git --icons --color=always {}"
+
+# Add explicit sessions here for clean names in sesh picker (ctrl-g)
+# [[session]]
+# name = "my-project"
+# path = "~/projects/my-project"
