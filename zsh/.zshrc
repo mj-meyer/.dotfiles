@@ -200,12 +200,13 @@ function sesh-sessions() {
     local session
     session=$(sesh list --icons | fzf --height 70% --reverse \
       --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-      --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+      --header '  ^a all ^t tmux ^g configs ^x zoxide ^w worktrees ^d kill ^f find' \
       --bind 'tab:down,btab:up' \
       --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
       --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
       --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
       --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+      --bind 'ctrl-w:change-prompt(🌳  )+reload(sesh list --icons -z | grep -F "$(sesh root)")' \
       --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
       --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
       --preview-window 'right:55%' \
@@ -218,3 +219,161 @@ function sesh-sessions() {
 
 zle -N sesh-sessions
 bindkey '^]' sesh-sessions
+
+# Clone a repo as a bare repo with worktree structure
+# Usage: git-clone-bare <repo-url> [directory-name]
+# Creates: directory/.bare, directory/.git, directory/main (worktree)
+function git-clone-bare() {
+  local repo_url="$1"
+  local dir_name="$2"
+
+  if [[ -z "$repo_url" ]]; then
+    echo "Usage: git-clone-bare <repo-url> [directory-name]"
+    return 1
+  fi
+
+  # Extract repo name from URL if dir_name not provided
+  if [[ -z "$dir_name" ]]; then
+    dir_name=$(basename "$repo_url" .git)
+  fi
+
+  # Create directory and clone bare
+  mkdir -p "$dir_name"
+  git clone --bare "$repo_url" "$dir_name/.bare"
+
+  # Create .git file pointing to .bare
+  echo "gitdir: ./.bare" > "$dir_name/.git"
+
+  # Set fetch to get all branches
+  git -C "$dir_name/.bare" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+
+  # Fetch all branches
+  git -C "$dir_name/.bare" fetch origin
+
+  # Get default branch name
+  local default_branch=$(git -C "$dir_name/.bare" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  if [[ -z "$default_branch" ]]; then
+    default_branch="main"
+  fi
+
+  # Create main worktree
+  git -C "$dir_name" worktree add "$default_branch" "$default_branch"
+
+  # Add to zoxide
+  zoxide add "$PWD/$dir_name"
+  zoxide add "$PWD/$dir_name/$default_branch"
+
+  echo "✓ Cloned bare repo to $dir_name"
+  echo "✓ Created worktree: $default_branch"
+  echo "✓ Added to zoxide"
+
+  # Ask to connect
+  echo ""
+  read "connect?Open in tmux with LazyVim? [y/N] "
+  if [[ "$connect" =~ ^[Yy]$ ]]; then
+    local session_name="$dir_name/$default_branch"
+    local worktree_path="$PWD/$dir_name/$default_branch"
+    tmux new-session -d -s "$session_name" -c "$worktree_path"
+    tmux send-keys -t "$session_name" "NVIM_APPNAME=LazyVim nvim" Enter
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$session_name"
+    else
+      tmux attach-session -t "$session_name"
+    fi
+  fi
+}
+
+# Initialize a new bare repo with worktree structure + optional GitHub repo
+# Usage: git-init-bare <project-name> [--github / --private]
+# Creates: project/.bare, project/.git, project/main (worktree)
+function git-init-bare() {
+  local project_name="$1"
+  local github_flag="$2"
+
+  if [[ -z "$project_name" ]]; then
+    echo "Usage: git-init-bare <project-name> [--github | --private]"
+    echo "  --github  Create public GitHub repo"
+    echo "  --private Create private GitHub repo"
+    return 1
+  fi
+
+  # Check if directory exists
+  if [[ -d "$project_name" ]]; then
+    echo "Error: Directory '$project_name' already exists"
+    return 1
+  fi
+
+  local full_path="$PWD/$project_name"
+
+  # Create directory structure
+  mkdir -p "$project_name/.bare"
+  mkdir -p "$project_name/main"
+
+  # Initialize bare repo
+  git init --bare "$project_name/.bare"
+
+  # Set default branch to main
+  git -C "$project_name/.bare" symbolic-ref HEAD refs/heads/main
+
+  # Create .git file in project root pointing to .bare
+  echo "gitdir: ./.bare" > "$project_name/.git"
+
+  # Create .git file in main worktree pointing to bare repo's worktree tracking
+  echo "gitdir: $full_path/.bare/worktrees/main" > "$project_name/main/.git"
+
+  # Register the worktree with the bare repo
+  mkdir -p "$project_name/.bare/worktrees/main"
+  echo "$full_path/main" > "$project_name/.bare/worktrees/main/gitdir"
+  echo "$full_path/.bare" > "$project_name/.bare/worktrees/main/commondir"
+  cp "$project_name/.bare/HEAD" "$project_name/.bare/worktrees/main/HEAD"
+
+  # Create initial commit in the main worktree
+  (
+    cd "$project_name/main"
+    echo "# $project_name" > README.md
+    git add README.md
+    git commit -m "Initial commit"
+  )
+
+  # Create GitHub repo if requested
+  if [[ "$github_flag" == "--github" || "$github_flag" == "--private" ]]; then
+    local visibility="public"
+    [[ "$github_flag" == "--private" ]] && visibility="private"
+
+    echo ""
+    echo "Creating $visibility GitHub repo..."
+
+    (
+      cd "$project_name/main"
+      gh repo create "$project_name" --"$visibility" --source=. --remote=origin --push
+    )
+
+    # Configure fetch for bare repo
+    git -C "$project_name/.bare" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+
+    echo "✓ GitHub repo created"
+  fi
+
+  # Add to zoxide
+  zoxide add "$full_path"
+  zoxide add "$full_path/main"
+
+  echo ""
+  echo "✓ Created bare repo: $project_name"
+  echo "✓ Created worktree: main"
+  echo "✓ Added to zoxide"
+
+  # Ask to connect
+  echo ""
+  read "connect?Open in tmux with LazyVim? [y/N] "
+  if [[ "$connect" =~ ^[Yy]$ ]]; then
+    local session_name="$project_name/main"
+    tmux new-session -d -s "$session_name" -c "$full_path/main"
+    tmux send-keys -t "$session_name" "NVIM_APPNAME=LazyVim nvim" Enter
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$session_name"
+    else
+      tmux attach-session -t "$session_name"
+    fi
+  fi
+}
