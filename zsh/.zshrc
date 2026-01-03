@@ -187,7 +187,6 @@ export LEDGER_FILE=~/Personal/coinops/2025.journal
 export PATH=/Users/mjmeyer/.opencode/bin:$PATH
 
 
-alias claude="/Users/mjmeyer/.claude/local/claude"
 
 # bun completions
 [ -s "/Users/mjmeyer/.bun/_bun" ] && source "/Users/mjmeyer/.bun/_bun"
@@ -377,3 +376,5 @@ function git-init-bare() {
     fi
   fi
 }
+export PATH="/Users/mjmeyer/.bun/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin"
