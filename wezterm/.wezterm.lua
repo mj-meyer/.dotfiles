@@ -42,10 +42,10 @@ local config = {
 	color_scheme = "Tokyo Night Moon",
 
 	window_padding = {
-		left = 40,
+		left = 20,
 		right = 20,
-		top = 30,
-		bottom = 20,
+		top = 5,
+		bottom = 1,
 	},
 
 	set_environment_variables = {
@@ -64,6 +64,7 @@ local config = {
 	disable_default_key_bindings = true, -- Disable all default key bindings
 
 	keys = {
+		{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 		-- TODO: configure Neovim Zen Mode
 		k.cmd_key(".", k.multiple_actions(":ZenMode")),
 
@@ -77,6 +78,12 @@ local config = {
 		},
 		-- new window
 		k.cmd_to_tmux_prefix("t", "c"),
+		-- Send Alt+T to terminal (for Claude Code thinking mode)
+		{
+			mods = "CMD|SHIFT",
+			key = "t",
+			action = act.SendString("\x1bt"),
+		},
 		k.cmd_to_tmux_prefix("r", "r"),
 		k.cmd_to_tmux_prefix("y", "{"),
 
@@ -205,6 +212,12 @@ local config = {
 			key = "v",
 			action = act.PasteFrom("Clipboard"),
 		},
+		-- Send Ctrl+V to terminal (for Claude Code image paste)
+		{
+			mods = "CMD|SHIFT",
+			key = "v",
+			action = act.SendString("\x16"),
+		},
 		-- Copy to clipboard using Ctrl+Shift+C (alternative for Linux-like behavior)
 		{
 			mods = "CTRL|SHIFT",
@@ -223,8 +236,16 @@ local config = {
 			key = "q",
 			action = act.CloseCurrentTab({ confirm = false }),
 		},
+		-- Set tmux pane title/label (CMD+l -> prefix+L)
+		{
+			mods = "CMD",
+			key = "l",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "l" }),
+			}),
+		},
 	},
 }
 
--- and finally, return the configuration to wezterm
 return config
