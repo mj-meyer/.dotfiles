@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>io.mjmeyer.kanata</string>
+    <string>com.local.kanata</string>
 
     <key>ProgramArguments</key>
     <array>
         <string>/opt/homebrew/bin/kanata</string>
         <string>-c</string>
-        <string>/Users/mjmeyer/.dotfiles/.config/kanata/kanata.kbd</string>
+        <string>__HOME__/.config/kanata/kanata.kbd</string>
     </array>
 
     <key>RunAtLoad</key>
