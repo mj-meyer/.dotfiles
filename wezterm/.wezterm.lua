@@ -21,7 +21,7 @@ local k = require("utils/keys")
 local wezterm = require("wezterm")
 local act = wezterm.action
 
--- This will hold the configuration.
+-- This will hold the configuration. just some test
 -- local config = wezterm.config_builder()
 local config = {
 	background = {
