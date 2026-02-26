@@ -7,6 +7,8 @@ return {
         sources = {
           explorer = {
             auto_close = true,
+            hidden = true,
+            ignored = true,
             layout = {
               preset = "vertical",
             },

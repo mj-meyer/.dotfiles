@@ -148,7 +148,7 @@ export HERD_PHP_83_INI_SCAN_DIR="/Users/mj.meyer/Library/Application Support/Her
 alias ls='eza --icons=always'
 # alias hc='~/Downloads/hc-v0.14.0-mac/hc'
 alias hc='~/Work/HyperCinema/toolkit-cli/dist/hc'
-alias docker=podman
+# alias docker=podman
 alias kc=kubectl
 
 # nvim config launcher
@@ -378,3 +378,4 @@ function git-init-bare() {
 }
 export PATH="/Users/mjmeyer/.bun/bin:$PATH"
 export PATH="$PATH:$HOME/go/bin"
+autoload -U compinit; compinit
