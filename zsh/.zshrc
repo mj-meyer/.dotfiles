@@ -150,6 +150,7 @@ alias ls='eza --icons=always'
 alias hc='~/Work/HyperCinema/toolkit-cli/dist/hc'
 # alias docker=podman
 alias kc=kubectl
+alias cc='claude --dangerously-skip-permissions'
 
 # nvim config launcher
 # TODO: investigate other distros
