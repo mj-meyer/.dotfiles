@@ -54,3 +54,10 @@
 [user]
 	email = hello@mjmeyer.dev
 	name = mj-meyer
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPio6tyMzM+JAOtpOy3ydNwipKai7LDbRPffQN/REPmG
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
