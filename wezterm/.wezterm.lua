@@ -57,6 +57,7 @@ local config = {
 	-- general options
 	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,
+	enable_kitty_keyboard = true,
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
@@ -64,7 +65,6 @@ local config = {
 	disable_default_key_bindings = true, -- Disable all default key bindings
 
 	keys = {
-		{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 		-- TODO: configure Neovim Zen Mode
 		k.cmd_key(".", k.multiple_actions(":ZenMode")),
 
