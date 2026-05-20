@@ -15,6 +15,24 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- Re-sign .so/.dylib files after Lazy sync to prevent macOS code signature crashes
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazySync",
+  callback = function()
+    local data_dir = vim.fn.stdpath("data")
+    vim.fn.jobstart(
+      { "bash", "-c", string.format([[find "%s" -name '*.so' -o -name '*.dylib' | xargs -L1 codesign --force --sign -]], data_dir) },
+      {
+        on_exit = function(_, code)
+          if code == 0 then
+            vim.notify("Re-signed all .so/.dylib files", vim.log.levels.INFO)
+          end
+        end,
+      }
+    )
+  end,
+})
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
