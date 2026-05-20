@@ -18,3 +18,6 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # Added by `rbenv init` on Tue Feb 18 17:38:54 NZDT 2025
 eval "$(rbenv init - --no-rehash zsh)"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
