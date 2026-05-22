@@ -1,0 +1,42 @@
+{
+  "pi-screenshots": {
+    "sources": [
+      "~/Desktop/CleanShot*.png"
+    ]
+  },
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-6",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "openai-codex/gpt-5.4",
+    "openai-1m/gpt-5.4",
+    "anthropic/claude-haiku-4-5",
+    "opencode-go/glm-5.1",
+    "opencode-go/glm-5",
+    "opencode-go/minimax-m2.7",
+    "opencode-go/mimo-v2-omni",
+    "opencode-go/mimo-v2-pro",
+    "opencode-go-anthropic/minimax-m2.7",
+    "anthropic/claude-sonnet-4-6",
+    "anthropic/claude-opus-4-7",
+    "openai-codex/gpt-5.5",
+    "anthropic/claude-opus-4-6",
+    "opencode-go/kimi-k2.6"
+  ],
+  "packages": [
+    "npm:pi-extension-observational-memory",
+    "npm:pi-subdir-context",
+    "npm:pi-extmgr",
+    "npm:pi-subagents",
+    "npm:pi-mcp-adapter",
+    "npm:@aliou/pi-guardrails",
+    "npm:@plannotator/pi-extension",
+    "npm:@juanibiapina/pi-tokyonight",
+    "npm:@ujjwalgrover/pi-catppuccin",
+    "npm:pi-powerline-footer"
+  ],
+  "theme": "tokyonight-moon",
+  "powerline": "full",
+  "workingVibe": "star wars"
+}
