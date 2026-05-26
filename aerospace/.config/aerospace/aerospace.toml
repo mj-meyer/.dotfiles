@@ -67,6 +67,14 @@ outer.bottom =     [{ monitor."built-in" = 10 }, 40]
 outer.top =        [{ monitor."built-in" = 10 }, 40]
 outer.right =      [{ monitor."built-in" = 10 }, 40]
 
+# Assign workspaces to monitors. See:
+# https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+# Workspace E ("external") lives on the external display. When that monitor is
+# disconnected, AeroSpace falls back to the main monitor automatically.
+[workspace-to-monitor-force-assignment]
+E = 'S34C65xV'
+W = 'built-in'
+
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
