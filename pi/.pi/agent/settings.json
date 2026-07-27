@@ -5,24 +5,20 @@
     ]
   },
   "lastChangelogVersion": "0.74.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-6",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "low",
   "enabledModels": [
-    "openai-codex/gpt-5.4",
-    "openai-1m/gpt-5.4",
     "anthropic/claude-haiku-4-5",
-    "opencode-go/glm-5.1",
-    "opencode-go/glm-5",
-    "opencode-go/minimax-m2.7",
-    "opencode-go/mimo-v2-omni",
-    "opencode-go/mimo-v2-pro",
-    "opencode-go-anthropic/minimax-m2.7",
     "anthropic/claude-sonnet-4-6",
     "anthropic/claude-opus-4-7",
-    "openai-codex/gpt-5.5",
     "anthropic/claude-opus-4-6",
-    "opencode-go/kimi-k2.6"
+    "github-copilot/gpt-5.5",
+    "github-copilot/claude-haiku-4.5",
+    "github-copilot/claude-sonnet-4.6",
+    "github-copilot/claude-opus-4.6",
+    "github-copilot/claude-opus-4.7",
+    "github-copilot/gemini-3.5-flash"
   ],
   "packages": [
     "npm:pi-extension-observational-memory",

@@ -1,0 +1,13 @@
+{
+  "vaultRoot": "/Users/t836307/Notes",
+  "wikis": {
+    "spark": {
+      "path": "Spaces/Spark",
+      "model": "anthropic/claude-sonnet-4-5"
+    }
+  },
+  "defaults": {
+    "model": "anthropic/claude-sonnet-4-5",
+    "mode": "background"
+  }
+}
