@@ -11,9 +11,6 @@ pi/.pi/agent/mcp-npx-cache.json
 pi/.pi/agent/mcp-auth.json
 pi/.local/share/pi/mcp-auth.json
 
-# pi extensions node_modules
-pi/.pi/agent/extensions/**/node_modules/
-
 !pi/.pi/agent/tsconfig.json
 !pi/.pi/agent/package.json
 !pi/.pi/agent/cloak.json
@@ -26,3 +23,8 @@ pi/.pi/agent/extensions/**/node_modules/
 !pi/.pi/agent/skills/
 !pi/.pi/agent/skills/**
 !pi/.pi/agent/settings.json
+
+# pi extension build/runtime junk (must come AFTER the re-includes above)
+pi/.pi/agent/extensions/**/node_modules/
+pi/.pi/agent/extensions/**/.venv/
+pi/.pi/agent/extensions/**/dist/
