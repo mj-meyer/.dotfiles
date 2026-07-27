@@ -4,7 +4,51 @@
 [default_session]
 preview_command = "eza --all --git --icons --color=always {}"
 
-# Add explicit sessions here for clean names in sesh picker (ctrl-g)
-# [[session]]
-# name = "my-project"
-# path = "~/projects/my-project"
+# Work projects
+[[session]]
+name = "nui-pattern-library"
+path = "~/Code/nui-pattern-library"
+
+[[session]]
+name = "online-web-myspark"
+path = "~/Code/online-web-myspark"
+
+[[session]]
+name = "online-web-shop"
+path = "~/Code/online-web-shop"
+
+[[session]]
+name = "online-web-bff"
+path = "~/Code/online-web-bff"
+
+[[session]]
+name = "online-web-common"
+path = "~/Code/online-web-common"
+
+[[session]]
+name = "online-web-payments"
+path = "~/Code/online-web-payments"
+
+[[session]]
+name = "online-web-forgerock-login"
+path = "~/Code/online-web-forgerock-login"
+
+[[session]]
+name = "online-web-universal-login-app"
+path = "~/Code/online-web-universal-login-app"
+
+[[session]]
+name = "online-web-xtramail"
+path = "~/Code/online-web-xtramail"
+
+[[session]]
+name = "online-spark-spa-aemcloud"
+path = "~/Code/online-spark-spa-aemcloud"
+
+[[session]]
+name = "online-azure-templates"
+path = "~/Code/online-azure-templates"
+
+[[session]]
+name = "online-skinny-web-bff"
+path = "~/Code/online-skinny-web-bff"
