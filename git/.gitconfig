@@ -55,9 +55,17 @@
 	email = hello@mjmeyer.dev
 	name = mj-meyer
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPio6tyMzM+JAOtpOy3ydNwipKai7LDbRPffQN/REPmG
+[includeIf "gitdir:~/Work/Spark/"]
+	path = ~/.gitconfig-spark
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-[commit]
-	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[url "git@github.com-spark:sparknz/"]
+	insteadOf = git@github.com:sparknz/

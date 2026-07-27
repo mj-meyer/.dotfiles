@@ -4,16 +4,14 @@
       "~/Desktop/CleanShot*.png"
     ]
   },
-  "lastChangelogVersion": "0.74.0",
+  "lastChangelogVersion": "0.82.0",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-6",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "claude-opus-4-6",
+  "defaultThinkingLevel": "max",
   "enabledModels": [
     "openai-codex/gpt-5.4",
-    "openai-1m/gpt-5.4",
     "anthropic/claude-haiku-4-5",
     "opencode-go/glm-5.1",
-    "opencode-go/glm-5",
     "opencode-go/minimax-m2.7",
     "opencode-go/mimo-v2-omni",
     "opencode-go/mimo-v2-pro",
@@ -22,10 +20,20 @@
     "anthropic/claude-opus-4-7",
     "openai-codex/gpt-5.5",
     "anthropic/claude-opus-4-6",
-    "opencode-go/kimi-k2.6"
+    "opencode-go/kimi-k2.6",
+    "github-copilot/gpt-5.4",
+    "github-copilot/gpt-5.5",
+    "github-copilot/gpt-5.4-mini",
+    "github-copilot/claude-haiku-4.5",
+    "github-copilot/claude-sonnet-4.6",
+    "github-copilot/claude-opus-4.6",
+    "github-copilot/claude-opus-4.8",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra",
+    "anthropic/claude-opus-5"
   ],
   "packages": [
-    "npm:pi-extension-observational-memory",
     "npm:pi-subdir-context",
     "npm:pi-extmgr",
     "npm:pi-subagents",
@@ -34,9 +42,54 @@
     "npm:@plannotator/pi-extension",
     "npm:@juanibiapina/pi-tokyonight",
     "npm:@ujjwalgrover/pi-catppuccin",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:@quintinshaw/pi-dynamic-workflows",
+    "npm:pi-observational-memory"
   ],
   "theme": "tokyonight-moon",
-  "powerline": "full",
+  "powerline": {
+    "preset": "default",
+    "layout": {
+      "left": [
+        "custom:pi-logo",
+        "model",
+        "thinking",
+        "shell_mode",
+        "path",
+        "git",
+        "subagents"
+      ],
+      "right": [
+        "token_in",
+        "token_out",
+        "cache_read",
+        "cost",
+        "context_pct",
+        "time_spent",
+        "time",
+        "extension_statuses"
+      ]
+    },
+    "customItems": [
+      {
+        "id": "pi-logo",
+        "statusKey": "pi-logo",
+        "position": "left",
+        "color": "accent"
+      }
+    ],
+    "model": {
+      "showThinkingLevel": false
+    },
+    "path": {
+      "mode": "abbreviated",
+      "maxLength": 50
+    },
+    "time": {
+      "format": "24h",
+      "showSeconds": false
+    },
+    "fixedEditor": true
+  },
   "workingVibe": "star wars"
 }

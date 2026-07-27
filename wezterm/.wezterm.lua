@@ -57,7 +57,11 @@ local config = {
 	-- general options
 	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,
-	enable_kitty_keyboard = true,
+	-- Disabled 2026-07-25: WezTerm's kitty keyboard encoding of Esc (incl. release
+	-- events like CSI 27;129:3u) is dropped by herdr's input parser, making plain
+	-- Esc unreliable in herdr panes. tmux/herdr provide inner-app key protocols
+	-- themselves, so this only affects apps running bare in WezTerm.
+	-- enable_kitty_keyboard = true,
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
@@ -70,11 +74,52 @@ local config = {
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
 
-		-- sesh session manager (sends ctrl+] which tmux and zsh can bind)
+		-- sesh session manager stays on a raw Ctrl+] press (tmux -n binding + zsh zle)
+
+		-- herdr-first navigation layer: workspaces (spaces), tabs, agents, goto.
+		-- All send prefix sequences; herdr/tmux intercept before the pane shell.
+		k.cmd_to_tmux_prefix("j", "u"), -- space down  (herdr next_workspace; no-op in tmux)
+		k.cmd_to_tmux_prefix("k", "i"), -- space up    (herdr previous_workspace; no-op in tmux)
+		k.cmd_to_tmux_prefix("h", "p"), -- previous tab (tmux: previous window)
+		k.cmd_to_tmux_prefix("l", "n"), -- next tab     (tmux: next window)
+		k.cmd_to_tmux_prefix("g", "g"), -- herdr navigate mode (goto)
+		k.cmd_to_tmux_prefix("e", "a"), -- rename tab in herdr (no-op in tmux)
+		-- herdr-plus project picker (prefix+o)
+		k.cmd_to_tmux_prefix("o", "o"),
+		-- worktrunk worktree picker (prefix+shift+o)
 		{
-			mods = "CMD",
+			mods = "CMD|SHIFT",
+			key = "o",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "o" }),
+			}),
+		},
+		{
+			mods = "CMD|SHIFT",
+			key = "e",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "w" }),
+			}),
+		}, -- rename workspace in herdr (no-op in tmux)
+		k.cmd_to_tmux_prefix("w", "&"), -- close tab (tmux: kill-window w/ confirm)
+		k.cmd_to_tmux_prefix("x", "x"), -- close pane (tmux: kill-pane)
+		{
+			mods = "CMD|ALT",
+			key = "j",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "j" }),
+			}),
+		},
+		{
+			mods = "CMD|ALT",
 			key = "k",
-			action = act.SendString("\x1d"),
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "k" }),
+			}),
 		},
 		-- new window
 		k.cmd_to_tmux_prefix("t", "c"),
@@ -236,9 +281,9 @@ local config = {
 			key = "q",
 			action = act.CloseCurrentTab({ confirm = false }),
 		},
-		-- Set tmux pane title/label (CMD+l -> prefix+L)
+		-- Set tmux pane title/label (CMD+SHIFT+l -> prefix+L; CMD+l is next tab)
 		{
-			mods = "CMD",
+			mods = "CMD|SHIFT",
 			key = "l",
 			action = act.Multiple({
 				act.SendKey({ mods = "CTRL", key = "b" }),
