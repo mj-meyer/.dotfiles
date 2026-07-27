@@ -2,11 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Tmux Navigate Windows
-vim.keymap.set("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", {})
-vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", {})
-vim.keymap.set("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", {})
-vim.keymap.set("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", {})
+-- Navigate windows + herdr/tmux panes (falls back to TmuxNavigate* in tmux)
+local nav = require("config.herdr-nav")
+vim.keymap.set("n", "<C-h>", nav.left, { desc = "Navigate left (vim/herdr)" })
+vim.keymap.set("n", "<C-j>", nav.down, { desc = "Navigate down (vim/herdr)" })
+vim.keymap.set("n", "<C-k>", nav.up, { desc = "Navigate up (vim/herdr)" })
+vim.keymap.set("n", "<C-l>", nav.right, { desc = "Navigate right (vim/herdr)" })
 
 -- Escape from insert mode
 vim.keymap.set("i", "jk", "<ESC>", {})

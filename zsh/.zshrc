@@ -154,7 +154,8 @@ alias cc='claude --dangerously-skip-permissions'
 
 # nvim config launcher
 # TODO: investigate other distros
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+# `nvim` opens LazyVim; use `\nvim` (or `command nvim`) to bypass and get vanilla nvim.
+alias nvim="NVIM_APPNAME=LazyVim nvim"
 function nvims() {
   #items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
   items=("LazyVim")

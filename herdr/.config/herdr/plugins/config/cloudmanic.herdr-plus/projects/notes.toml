@@ -1,0 +1,10 @@
+name = "Notes"
+description = "Obsidian vault and personal notes"
+working_dir = "~/Documents/Notes"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"
