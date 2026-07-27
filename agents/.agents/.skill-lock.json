@@ -242,13 +242,13 @@
       "updatedAt": "2026-03-27T11:37:22.475Z"
     },
     "design-taste-frontend": {
-      "source": "leonxlnx/taste-skill",
+      "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
       "skillPath": "skills/taste-skill/SKILL.md",
-      "skillFolderHash": "826d9d12328f2d8b2c00ad5c28e02612d2484faf",
+      "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
       "installedAt": "2026-03-27T11:39:44.598Z",
-      "updatedAt": "2026-03-27T11:39:44.598Z"
+      "updatedAt": "2026-07-02T00:09:20.279Z"
     },
     "stop-slop": {
       "source": "hardikpandya/stop-slop",
@@ -398,6 +398,34 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-05-23T03:18:07.125Z",
       "updatedAt": "2026-05-23T03:18:07.125Z"
+    },
+    "writing-great-skills": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/writing-great-skills/SKILL.md",
+      "skillFolderHash": "c84411b360fad91b8756e60fa17fd5b5761422dd",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-07-08T00:54:12.740Z",
+      "updatedAt": "2026-07-08T00:54:12.740Z"
+    },
+    "worktrunk": {
+      "source": "max-sixty/worktrunk",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/max-sixty/worktrunk.git",
+      "skillPath": "skills/worktrunk/SKILL.md",
+      "skillFolderHash": "3dd8ed5e74b307ea684c8bff330fafc5bbf1146c",
+      "installedAt": "2026-07-08T05:26:40.774Z",
+      "updatedAt": "2026-07-08T05:26:40.774Z"
+    },
+    "herdr": {
+      "source": "ogulcancelik/herdr",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ogulcancelik/herdr.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "ca7ae086e8d6e80f6efc969d541b390328a6d143",
+      "installedAt": "2026-07-14T01:03:01.030Z",
+      "updatedAt": "2026-07-14T01:03:01.030Z"
     }
   },
   "dismissed": {
@@ -406,17 +434,17 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
     "warp",
+    "zed",
     "claude-code",
     "pi"
   ]
