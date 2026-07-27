@@ -16,7 +16,10 @@ plugins=(
 
 for plugin in "${plugins[@]}"; do
   echo "Installing $plugin..."
-  herdr plugin install "github:$plugin" || echo "  ⚠ failed (may already be installed)"
+  # --yes: the plugin list above is the review step; herdr otherwise refuses
+  # to run a plugin's build step without one. Note: --yes must come *after*
+  # the repo argument (herdr 0.7.1 parses positionally).
+  herdr plugin install "$plugin" --yes || echo "  ⚠ failed (may already be installed)"
 done
 
 echo "Done. Restart herdr to pick up changes."

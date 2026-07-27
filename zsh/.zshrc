@@ -394,3 +394,16 @@ if host proxy.telecom.tcnz.net &>/dev/null 2>&1; then
 fi
 alias proxy-on='export HTTPS_PROXY="http://websense.telecom.tcnz.net:8080" HTTP_PROXY="http://websense.telecom.tcnz.net:8080" && echo "Proxy ON"'
 alias proxy-off='unset HTTPS_PROXY HTTP_PROXY && echo "Proxy OFF"'
+
+# ------------------------------------------------------------------------------
+# Machine-specific paths
+# ------------------------------------------------------------------------------
+# Configs that are shared across machines (herdr-plus projects, wiki, etc.)
+# reference these instead of hard-coded paths. herdr-plus expands $VARS in
+# working_dir, so one project file works on every machine.
+export NOTES_DIR="${NOTES_DIR:-$([[ -d "$HOME/Documents/Notes" ]] && echo "$HOME/Documents/Notes" || echo "$HOME/Notes")}"
+export CODE_DIR="${CODE_DIR:-$([[ -d "$HOME/Development" ]] && echo "$HOME/Development" || echo "$HOME/Code")}"
+
+# Anything that must not be shared (work-only tokens, one-off paths) goes here.
+# Untracked on purpose.
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

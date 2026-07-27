@@ -54,7 +54,9 @@
 [user]
 	email = hello@mjmeyer.dev
 	name = mj-meyer
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPio6tyMzM+JAOtpOy3ydNwipKai7LDbRPffQN/REPmG
+	# Personal key (1Password item "id_ed25519"), also the auth key on GitHub.
+	# Register it at github.com/settings/ssh/new with type "Signing Key".
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIjh9b5P0oebIowLLdj5wLatDdRI07TJ6QyTveySBB34
 [includeIf "gitdir:~/Work/Spark/"]
 	path = ~/.gitconfig-spark
 [gpg]
