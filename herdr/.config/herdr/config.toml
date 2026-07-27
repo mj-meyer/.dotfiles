@@ -1,0 +1,86 @@
+onboarding = false
+
+[theme]
+# Match WezTerm's Tokyo Night Moon
+name = "tokyo-night"
+
+[keys]
+# Match tmux: prefix+\ = side-by-side split, prefix+- = stacked split (default).
+# WezTerm already sends cmd+n -> ctrl+b \ and cmd+shift+n -> ctrl+b -.
+split_vertical = ["prefix+v", "prefix+backslash"]
+
+# Cycle the agents panel (priority-sorted attention queue).
+# Avoid alt+1..9 for focus_agent: aerospace owns alt+number globally.
+# WezTerm sends cmd+alt+j/k as these prefix chords.
+next_agent = "prefix+shift+j"
+previous_agent = "prefix+shift+k"
+
+# Cycle workspaces. WezTerm sends cmd+j -> prefix+u, cmd+k -> prefix+i
+# (plain letters chosen because they are unbound/harmless in tmux).
+next_workspace = "prefix+u"
+previous_workspace = "prefix+i"
+
+# Pane rename on the same chord tmux uses (WezTerm cmd+shift+l -> prefix+L),
+# keeping herdr's default prefix+shift+p too.
+rename_pane = ["prefix+shift+p", "prefix+shift+l"]
+
+# Tab rename without a prefix chord: WezTerm sends cmd+e -> prefix+a
+# (a is unbound in tmux, so cmd+e is a harmless no-op there).
+rename_tab = ["prefix+shift+t", "prefix+a"]
+
+# Close tab: WezTerm sends cmd+w -> prefix+& (kill-window in tmux).
+close_tab = ["prefix+shift+x", "prefix+ampersand"]
+
+# Navigate mode (prefix+g): J/K move through the workspace list,
+# plain h/j/k/l stay pane movement, enter opens, esc exits.
+navigate_workspace_up = "shift+k"
+navigate_workspace_down = "shift+j"
+
+# Seamless ctrl+h/j/k/l across herdr panes and vim splits
+# (vim-herdr-navigation plugin, vim-tmux-navigator port)
+# herdr-plus: project picker (WezTerm sends cmd+o -> prefix+o)
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.projects"
+description = "open project"
+
+# worktrunk: worktree branch picker (WezTerm sends cmd+shift+o -> prefix+shift+o)
+[[keys.command]]
+key = "prefix+shift+o"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "worktree: switch / create from default branch"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
+[ui]
+agent_panel_sort = "priority"
+# Create tabs instantly like tmux (rename later with cmd+e)
+prompt_new_tab_name = false
+
+[ui.toast]
+# macOS notifications when background agents finish or need input
+delivery = "system"

@@ -1,0 +1,10 @@
+name = "Dotfiles"
+description = "System configuration and dotfiles"
+working_dir = "~/.dotfiles"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"
