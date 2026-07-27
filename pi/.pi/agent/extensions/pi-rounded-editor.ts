@@ -8,7 +8,7 @@
  *   ╰  > cursor line                                         ╯
  */
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { visibleWidth } from "@mariozechner/pi-tui";
+import { visibleWidth, truncateToWidth } from "@mariozechner/pi-tui";
 
 // Strip CSI/OSC/APC sequences so border detection ignores color codes,
 // hyperlinks, and pi's zero-width CURSOR_MARKER APC escape.
@@ -34,6 +34,21 @@ export default function (pi: ExtensionAPI) {
         const innerRender = editor.render.bind(editor);
 
         editor.render = (width: number): string[] => {
+          // When rendered inside a fixedEditor cluster, the compositor
+          // calls renderHidden(container, terminalWidth) but the TUI
+          // container may pass its own stale layout-width to children
+          // instead of the explicit parameter.  Grab the real terminal
+          // width so we always fill the pane.
+          const termCols: number | undefined = tui?.terminal?.columns;
+          if (
+            termCols &&
+            Number.isFinite(termCols) &&
+            termCols > 14 &&
+            width < termCols
+          ) {
+            width = termCols;
+          }
+
           if (width < 14) return innerRender(width);
 
           // Reserve 4 columns for a softer frame:
@@ -71,8 +86,15 @@ export default function (pi: ExtensionAPI) {
             // Any lines before the status (rare)
             for (let i = 0; i < topIdx - 1; i++) result.push(lines[i] || "");
 
-            const status = lines[topIdx - 1] || "";
-            const statusW = visibleWidth(status);
+            let status = lines[topIdx - 1] || "";
+            let statusW = visibleWidth(status);
+            // Truncate the status line if it overflows the available
+            // space so the top border never exceeds `width` columns.
+            const maxStatusW = width - 4;
+            if (statusW > maxStatusW) {
+              status = truncateToWidth(status, maxStatusW, "…");
+              statusW = visibleWidth(status);
+            }
             const fill = Math.max(0, width - 4 - statusW);
             result.push(bc("╭─") + status + bc("─".repeat(fill) + "─╮"));
           } else {
@@ -91,18 +113,29 @@ export default function (pi: ExtensionAPI) {
               const vw = visibleWidth(line);
 
               if (isLast) {
-                const inset = vw <= width - 6 ? 2 : 1;
+                // Clamp content that overflows the inner width
+                const clampedLine = vw > innerWidth
+                  ? truncateToWidth(line, innerWidth, "")
+                  : line;
+                const clampedVw = vw > innerWidth ? visibleWidth(clampedLine) : vw;
+
+                const inset = clampedVw <= width - 6 ? 2 : 1;
                 const lastLineWidth = width - 2 - inset * 2;
-                const pad = Math.max(0, lastLineWidth - vw);
+                const pad = Math.max(0, lastLineWidth - clampedVw);
                 result.push(
                   bc("╰" + " ".repeat(inset)) +
-                    line +
+                    clampedLine +
                     " ".repeat(pad) +
                     bc(" ".repeat(inset) + "╯")
                 );
               } else {
-                const pad = Math.max(0, innerWidth - vw);
-                result.push(bc("│ ") + line + " ".repeat(pad) + bc(" │"));
+                // Clamp content that overflows the inner width
+                const clampedLine = vw > innerWidth
+                  ? truncateToWidth(line, innerWidth, "")
+                  : line;
+                const clampedVw = vw > innerWidth ? visibleWidth(clampedLine) : vw;
+                const pad = Math.max(0, innerWidth - clampedVw);
+                result.push(bc("│ ") + clampedLine + " ".repeat(pad) + bc(" │"));
               }
             }
           } else {
