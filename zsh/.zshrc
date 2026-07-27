@@ -380,3 +380,16 @@ function git-init-bare() {
 export PATH="/Users/mjmeyer/.bun/bin:$PATH"
 export PATH="$PATH:$HOME/go/bin"
 autoload -U compinit; compinit
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# Node.js: trust macOS system keychain CAs (safe to always have on)
+export NODE_OPTIONS="--use-system-ca"
+
+# Corporate proxy — auto-detect Spark network
+if host proxy.telecom.tcnz.net &>/dev/null 2>&1; then
+  export HTTPS_PROXY="http://websense.telecom.tcnz.net:8080"
+  export HTTP_PROXY="http://websense.telecom.tcnz.net:8080"
+fi
+alias proxy-on='export HTTPS_PROXY="http://websense.telecom.tcnz.net:8080" HTTP_PROXY="http://websense.telecom.tcnz.net:8080" && echo "Proxy ON"'
+alias proxy-off='unset HTTPS_PROXY HTTP_PROXY && echo "Proxy OFF"'
