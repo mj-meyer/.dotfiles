@@ -1,0 +1,9 @@
+# Helper script lives with the package but must not be linked into $HOME.
+^/setup-plugins\.sh$
+
+# stow defaults
+\.git
+\.gitignore
+\.DS_Store
+README.*
+LICENSE.*
