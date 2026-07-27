@@ -242,13 +242,13 @@
       "updatedAt": "2026-03-27T11:37:22.475Z"
     },
     "design-taste-frontend": {
-      "source": "leonxlnx/taste-skill",
+      "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/leonxlnx/taste-skill.git",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
       "skillPath": "skills/taste-skill/SKILL.md",
-      "skillFolderHash": "826d9d12328f2d8b2c00ad5c28e02612d2484faf",
+      "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
       "installedAt": "2026-03-27T11:39:44.598Z",
-      "updatedAt": "2026-03-27T11:39:44.598Z"
+      "updatedAt": "2026-07-01T21:16:05.974Z"
     },
     "stop-slop": {
       "source": "hardikpandya/stop-slop",
@@ -398,6 +398,78 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-05-23T03:18:07.125Z",
       "updatedAt": "2026-05-23T03:18:07.125Z"
+    },
+    "owasp-security": {
+      "source": "hoodini/ai-agents-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/hoodini/ai-agents-skills.git",
+      "skillPath": "skills/owasp-security/SKILL.md",
+      "skillFolderHash": "f11087a4777f9cfe290c4429e536b36f04e1e9df",
+      "installedAt": "2026-06-24T12:31:58.390Z",
+      "updatedAt": "2026-06-24T12:31:58.390Z"
+    },
+    "postgresql-code-review": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "skillPath": "skills/postgresql-code-review/SKILL.md",
+      "skillFolderHash": "5e41d23340dfe6988fc87a727083d1cd30bc1b1c",
+      "installedAt": "2026-06-24T12:33:10.163Z",
+      "updatedAt": "2026-06-24T12:33:10.163Z"
+    },
+    "node": {
+      "source": "mcollina/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mcollina/skills.git",
+      "skillPath": "skills/node/SKILL.md",
+      "skillFolderHash": "359e8c0e1843122275c113174cd6459967d3cb4f",
+      "installedAt": "2026-06-24T12:49:51.156Z",
+      "updatedAt": "2026-06-24T12:49:51.156Z"
+    },
+    "email-best-practices": {
+      "source": "resend/email-best-practices",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/resend/email-best-practices.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "ef764286d84d665634e14040a726d295c962120e",
+      "installedAt": "2026-06-24T12:51:17.017Z",
+      "updatedAt": "2026-06-24T12:51:17.017Z"
+    },
+    "tanstack-query": {
+      "source": "tanstack-skills/tanstack-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/tanstack-skills/tanstack-skills.git",
+      "skillPath": "plugins/tanstack-query/skills/tanstack-query/SKILL.md",
+      "skillFolderHash": "50fdcfbff89fba75fd5c2be42701b907d185abeb",
+      "installedAt": "2026-06-24T12:56:14.599Z",
+      "updatedAt": "2026-06-24T12:56:14.599Z"
+    },
+    "drizzle-orm-patterns": {
+      "source": "giuseppe-trisciuoglio/developer-kit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/giuseppe-trisciuoglio/developer-kit.git",
+      "skillPath": "plugins/developer-kit-typescript/skills/drizzle-orm-patterns/SKILL.md",
+      "skillFolderHash": "af8ea2bee1c10c05c4474b1927a8b11a40eb6107",
+      "installedAt": "2026-06-24T12:58:19.100Z",
+      "updatedAt": "2026-06-24T12:58:19.100Z"
+    },
+    "stripe-best-practices": {
+      "source": "stripe/ai",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stripe/ai.git",
+      "skillPath": "skills/stripe-best-practices/SKILL.md",
+      "skillFolderHash": "dd900046a0220bfb53bb54b2ea197f151027feff",
+      "installedAt": "2026-06-24T13:02:27.632Z",
+      "updatedAt": "2026-06-24T13:02:27.632Z"
+    },
+    "herdr": {
+      "source": "ogulcancelik/herdr",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ogulcancelik/herdr.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "44f2211608618e56d4bd80ef9c2bac4d9c8be4d2",
+      "installedAt": "2026-07-21T09:57:09.624Z",
+      "updatedAt": "2026-07-21T09:57:09.624Z"
     }
   },
   "dismissed": {
@@ -406,17 +478,17 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
     "warp",
+    "zed",
     "claude-code",
     "pi"
   ]
