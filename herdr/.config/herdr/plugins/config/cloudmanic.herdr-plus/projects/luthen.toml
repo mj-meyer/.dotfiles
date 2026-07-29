@@ -1,0 +1,10 @@
+name = "Luthen"
+description = "Orchestration agent — beads layer 1, skills, project registry"
+working_dir = "~/Personal/luthen"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"
