@@ -1,5 +1,21 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# ------------------------------------------------------------------------------
+# PATH / FPATH hygiene  --  MUST come first
+# ------------------------------------------------------------------------------
+# `typeset -U` makes these arrays unique-only (first occurrence wins). Without
+# this, FPATH is exported, so every nested shell inherits it and prepends its
+# entries again. oh-my-zsh stamps `#omz fpath: $fpath` into ~/.zcompdump-* and
+# DELETES the dump whenever it doesn't match -- so a growing FPATH meant the
+# completion cache was rebuilt from scratch on every single shell start
+# (~700ms). Dedup keeps fpath stable, so the cache actually gets reused.
+typeset -U path fpath PATH FPATH
+
+# Homebrew. Guarded so nested shells don't re-run it (it prepends to PATH/FPATH).
+if [[ -z $HOMEBREW_PREFIX ]]; then
+  for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+    [[ -x $_brew ]] && { eval "$($_brew shellenv)"; break; }
+  done
+  unset _brew
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -110,19 +126,20 @@ bindkey "^[^[[D" backward-word
 # export NVM_DIR=~/.nvm
 #  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-eval "$(fnm env --use-on-cd)"
+command -v fnm >/dev/null && eval "$(fnm env --use-on-cd)"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
 alias tf=terraform
 
-eval "$(zoxide init zsh)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Can use \nvim if you don't want to use lvim
 # alias nvim=lvim 
 # export EDITOR='lvim'
 
-export PATH="$HOME/.local/bin":$PATH
+path=("$HOME/.local/bin" $path)
+
+# OrbStack CLI integration
+[[ -f ~/.orbstack/shell/init.zsh ]] && source ~/.orbstack/shell/init.zsh
 
 # ~/.tmux/plugins
 # export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
@@ -131,19 +148,10 @@ export PATH="$HOME/.local/bin":$PATH
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(starship init zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
 
-# pnpm
-# export PATH="/opt/homebrew/opt/pnpm@9/bin:$PATH"
-export PATH="/opt/homebrew/Cellar/pnpm/10.5.2/bin:$PATH"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/mj.meyer/Library/Application Support/Herd/config/php/83/"
+# pnpm -- installed via Homebrew here; PNPM_HOME is only set by standalone installs
+[[ -n $PNPM_HOME && -d $PNPM_HOME ]] && path=("$PNPM_HOME" $path)
 
 alias ls='eza --icons=always'
 # alias hc='~/Downloads/hc-v0.14.0-mac/hc'
@@ -171,27 +179,26 @@ function nvims() {
 
 bindkey -s ^a "nvims\n"
 
-# Herd injected PHP binary.
-export PATH="/Users/mj.meyer/Library/Application Support/Herd/bin/":$PATH
-
-eval "$(rbenv init - --no-rehash zsh)"
+command -v rbenv >/dev/null && eval "$(rbenv init - --no-rehash zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-export PATH="/Users/mjmeyer/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/Users/mjmeyer/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-export LEDGER_FILE=~/Personal/coinops/2025.journal
+[[ -d $PYENV_ROOT/bin ]] && path=("$PYENV_ROOT/bin" $path)
+command -v pyenv >/dev/null && eval "$(pyenv init - zsh)"
+
+# postgresql@15 (whichever Homebrew prefix this machine uses)
+[[ -d "$HOMEBREW_PREFIX/opt/postgresql@15/bin" ]] && path=("$HOMEBREW_PREFIX/opt/postgresql@15/bin" $path)
+
+[[ -d "$HOME/Personal/coinops" ]] && export LEDGER_FILE="$HOME/Personal/coinops/2025.journal"
 
 # opencode
-export PATH=/Users/mjmeyer/.opencode/bin:$PATH
+[[ -d "$HOME/.opencode/bin" ]] && path=("$HOME/.opencode/bin" $path)
 
+# bun
+[[ -d "$HOME/.bun/bin" ]] && path=("$HOME/.bun/bin" $path)
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
-
-# bun completions
-[ -s "/Users/mjmeyer/.bun/_bun" ] && source "/Users/mjmeyer/.bun/_bun"
+# Obsidian CLI
+[[ -d "/Applications/Obsidian.app/Contents/MacOS" ]] && path+=("/Applications/Obsidian.app/Contents/MacOS")
 
 # sesh session manager (triggered by cmd+k via F13 when not in tmux)
 function sesh-sessions() {
@@ -378,14 +385,27 @@ function git-init-bare() {
     fi
   fi
 }
-export PATH="/Users/mjmeyer/.bun/bin:$PATH"
-export PATH="$PATH:$HOME/go/bin"
-autoload -U compinit; compinit
+[[ -d "$HOME/go/bin" ]] && path+=("$HOME/go/bin")
+
+# NOTE: no `compinit` here on purpose -- oh-my-zsh already ran it against
+# $ZSH_COMPDUMP. A bare compinit writes a *second* dump (~/.zcompdump) and
+# rebuilds it every startup.
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 # Node.js: trust macOS system keychain CAs (safe to always have on)
 export NODE_OPTIONS="--use-system-ca"
+
+# pi: skip startup update checks.
+# Without this, every `pi` launch shells out to `npm view <pkg> version` for all
+# ~14 installed packages plus a `git ls-remote` for git-sourced ones. Each spawns
+# a full npm process AND a registry round-trip -- ~7s at home, 10-15s behind the
+# corporate proxy. Update deliberately instead, via the aliases below.
+export PI_OFFLINE=1
+
+# Run pi with update checks re-enabled (use occasionally to pick up new versions)
+alias pi-online='PI_OFFLINE=0 pi'
+alias piup='PI_OFFLINE=0 pi update'
 
 # Corporate proxy — auto-detect Spark network
 if host proxy.telecom.tcnz.net &>/dev/null 2>&1; then

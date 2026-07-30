@@ -1,23 +1,19 @@
-# Homebrew PATH setup
-if [[ $(uname -s) == "Darwin" ]]; then
-  if [[ $(uname -m) == 'arm64' ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  else
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
-else
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+# .zprofile -- login shells only.
+#
+# Deliberately (almost) empty: all environment setup lives in .zshrc so there is
+# exactly ONE place to look, and so login vs non-login shells end up with an
+# identical environment. Previously this file and .zshrc both ran `brew
+# shellenv`, `fnm env` and `rbenv init`, which meant:
+#   - PATH/FPATH picked up duplicate entries that grew with shell nesting
+#   - oh-my-zsh saw a different $fpath every startup and rebuilt the whole
+#     completion cache each time (~700ms per shell)
+#   - fnm allocated a second throwaway multishell dir per shell
+#
+# .zshrc is guarded + uses `typeset -U`, so running it in nested shells is cheap
+# and idempotent.
+#
+# Trade-off: non-interactive login shells (e.g. `ssh host 'some command'`) don't
+# source .zshrc, so they won't get Homebrew on PATH. If that ever matters, add a
+# minimal `brew shellenv` here rather than moving everything back.
 
-
-eval "$(fnm env --use-on-cd)"
-
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
-
-# Added by `rbenv init` on Tue Feb 18 17:38:54 NZDT 2025
-eval "$(rbenv init - --no-rehash zsh)"
-
-# Added by Obsidian
-export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+[[ -o interactive ]] || return
