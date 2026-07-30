@@ -52,6 +52,16 @@ type = "plugin_action"
 command = "worktrunk.open"
 description = "worktree: switch / create from default branch"
 
+# worktrunk: worktree remover (WezTerm sends cmd+shift+d -> prefix+shift+r).
+# Deliberately NOT prefix+shift+d (the plugin README's suggestion) so herdr's
+# built-in close_workspace stays there for cmd+d. Routed through the plugin
+# rather than herdr's native remove_worktree so worktrunk's hooks still fire.
+[[keys.command]]
+key = "prefix+shift+r"
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "worktree: remove (runs worktrunk hooks)"
+
 [[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
@@ -76,8 +86,11 @@ type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
 
+[experimental]
+kitty_graphics = true
+
 [ui]
-agent_panel_sort = "priority"
+agent_panel_sort = "spaces"
 # Create tabs instantly like tmux (rename later with cmd+e)
 prompt_new_tab_name = false
 

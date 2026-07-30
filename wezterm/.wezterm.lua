@@ -95,6 +95,24 @@ local config = {
 				act.SendKey({ mods = "SHIFT", key = "o" }),
 			}),
 		},
+		-- herdr: close workspace (prefix+shift+d)
+		{
+			mods = "CMD",
+			key = "d",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "d" }),
+			}),
+		},
+		-- worktrunk: remove worktree, runs wt hooks (prefix+shift+r)
+		{
+			mods = "CMD|SHIFT",
+			key = "d",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "r" }),
+			}),
+		},
 		{
 			mods = "CMD|SHIFT",
 			key = "e",
