@@ -18,6 +18,7 @@ display_help() {
   echo "  --deps              install deps for linux"
   echo "  --brew              install brew for linux/macos"
   echo "  --ansible           execute ansible for linux/macos"
+  echo "  --share             install the share.mjmeyer.dev CLI (needs SSH + 1Password)"
   echo "  --all               setup everything"
   echo "  --xcode             install Xcode Command Line Tools (macos only)"
   echo "  -h, --help          display this help message"
@@ -135,6 +136,9 @@ setup_all() {
   fi
   
   "${target}/scripts/common/ansible.sh" --all
+
+  # Needs git-over-SSH + 1Password, so it runs last.
+  "${target}/scripts/common/install_share.sh"
 }
 
 # process arguments
@@ -153,6 +157,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     --ansible)
       "${cwd}/common/ansible.sh"
+      ;;
+    --share)
+      "${cwd}/common/install_share.sh"
       ;;
     --xcode)
       install_xcode_tools

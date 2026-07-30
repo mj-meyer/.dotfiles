@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<!-- Replace the title. -->
+<title>Project Plan — Client</title>
+<style>
+  :root {
+    --ink: #18181b;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #4f46e5;
+    --bg: #ffffff;
+    --soft: #f7f7f9;
+    --max: 720px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 72px 28px 96px; }
+
+  /* Cover */
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .lede { font-size: 18px; color: var(--muted); margin: 0 0 28px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 18px 0; margin: 0 0 8px;
+          border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .meta div { font-size: 14px; }
+  .meta dt { color: var(--muted); margin: 0; }
+  .meta dd { margin: 2px 0 0; font-weight: 600; }
+
+  /* Sections */
+  section { margin: 44px 0 0; }
+  h2 { font-size: 22px; letter-spacing: -0.01em; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  h3 { font-size: 17px; margin: 28px 0 8px; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 6px 0; }
+  a { color: var(--accent); }
+  strong { font-weight: 650; }
+
+  /* Components */
+  .callout { background: var(--soft); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+             border-radius: 10px; padding: 16px 18px; margin: 0 0 16px; }
+  .callout p:last-child { margin-bottom: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  code { background: var(--soft); padding: 2px 6px; border-radius: 6px; font-size: 0.9em; }
+
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e7e9ee; --muted:#9aa0ab; --line:#2a2e38; --bg:#0d0e11; --soft:#16181d; --accent:#8b9bff; }
+  }
+  @media print {
+    .wrap { padding: 0; max-width: none; }
+    a { color: inherit; text-decoration: none; }
+    section, h2, h3 { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- ===== Cover ===== -->
+    <p class="eyebrow">Project Plan</p>
+    <h1>Replace with the document title</h1>
+    <p class="lede">One-sentence summary of what this document covers.</p>
+
+    <dl class="meta">
+      <div><dt>Prepared for</dt><dd>Client name</dd></div>
+      <div><dt>Prepared by</dt><dd>Michael Meyer</dd></div>
+      <div><dt>Date</dt><dd>Month DD, YYYY</dd></div>
+      <div><dt>Status</dt><dd>Draft</dd></div>
+    </dl>
+
+    <!-- ===== Body — duplicate/remove sections as needed ===== -->
+    <section>
+      <h2>Overview</h2>
+      <p>Context and goals. What problem this addresses and the intended outcome.</p>
+      <div class="callout">
+        <p><strong>Key takeaway.</strong> Lead with the single most important point.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Scope</h2>
+      <h3>In scope</h3>
+      <ul><li>Item</li><li>Item</li></ul>
+      <h3>Out of scope</h3>
+      <ul><li>Item</li></ul>
+    </section>
+
+    <section>
+      <h2>Timeline</h2>
+      <table>
+        <thead><tr><th>Phase</th><th>Deliverable</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery</td><td>Requirements</td><td>Week 1</td></tr>
+          <tr><td>Build</td><td>Implementation</td><td>Weeks 2–4</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <ol><li>Action</li><li>Action</li></ol>
+    </section>
+
+    <footer>
+      Michael Meyer · mjmeyer.dev · Confidential — prepared for the named recipient.
+    </footer>
+  </main>
+</body>
+</html>
