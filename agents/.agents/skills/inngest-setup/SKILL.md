@@ -1,6 +1,7 @@
 ---
 name: inngest-setup
 description: Set up Inngest in a TypeScript project. Install the SDK, create a client, configure environment variables, serve endpoints or connect as a worker, and run the local dev server.
+disable-model-invocation: true
 ---
 
 # Inngest Setup

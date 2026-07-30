@@ -9,6 +9,7 @@ description: >-
   Start), create custom resources, or work with any Alchemy provider.
 metadata:
   tags: alchemy, infrastructure-as-code, typescript, cloudflare, workers, kv, r2, d1, queues, iac, deploy
+disable-model-invocation: true
 ---
 
 # Alchemy

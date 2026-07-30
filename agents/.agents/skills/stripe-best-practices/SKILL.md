@@ -11,6 +11,7 @@ description: >-
   processing payments, setting up subscriptions, creating connected accounts, or
   implementing secure key handling.
 
+disable-model-invocation: true
 ---
 
 Latest Stripe API version: **2026-05-27.dahlia**. Always use the latest API version and SDK unless the user specifies otherwise.

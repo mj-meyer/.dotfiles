@@ -1,6 +1,7 @@
 ---
 name: inngest-durable-functions
 description: Create and configure Inngest durable functions. Covers triggers (events, cron, invoke), step execution and memoization, idempotency, cancellation, error handling, retries, logging, and observability.
+disable-model-invocation: true
 ---
 
 # Inngest Durable Functions

@@ -11,6 +11,7 @@ metadata:
     links:
       repository: https://github.com/resend/email-best-practices
       documentation: https://resend.com/docs/email-best-practices-skill
+disable-model-invocation: true
 ---
 
 # Email Best Practices

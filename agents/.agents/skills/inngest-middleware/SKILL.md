@@ -1,6 +1,7 @@
 ---
 name: inngest-middleware
 description: Create and use Inngest middleware for cross-cutting concerns. Covers the middleware lifecycle, creating custom middleware, dependency injection with dependencyInjectionMiddleware, encryption via @inngest/middleware-encryption, Sentry error tracking via @inngest/middleware-sentry, and custom middleware patterns.
+disable-model-invocation: true
 ---
 
 # Inngest Middleware

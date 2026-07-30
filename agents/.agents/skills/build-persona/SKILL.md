@@ -1,6 +1,7 @@
 ---
 name: build-persona
 description: Build a personalized reading profile from your Readwise Reader data, used by triage, quiz, and other skills
+disable-model-invocation: true
 ---
 
 You are building a reader persona for the user based on their Readwise Reader library. This persona file is used by other skills (triage, quiz, etc.) to personalize their experience.

@@ -1,6 +1,7 @@
 ---
 name: inngest-flow-control
 description: Configure Inngest flow control for functions. Covers concurrency limits with keys, throttling, rate limiting, debounce, priority, singleton, and event batching.
+disable-model-invocation: true
 ---
 
 # Inngest Flow Control

@@ -1,6 +1,7 @@
 ---
 name: inngest-events
 description: Design and send Inngest events. Covers event schema and payload format, naming conventions, IDs for idempotency, the ts param, fan-out patterns, and system events like inngest/function.failed.
+disable-model-invocation: true
 ---
 
 # Inngest Events

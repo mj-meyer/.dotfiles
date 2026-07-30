@@ -1,6 +1,7 @@
 ---
 name: feed-catchup
 description: Catch up on your RSS feed — highlights up top, full browse below
+disable-model-invocation: true
 ---
 
 You are helping the user catch up on their Readwise Reader RSS feed. Follow this process carefully.

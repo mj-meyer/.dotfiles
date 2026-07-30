@@ -7,6 +7,7 @@ references:
   - d1
   - durable-objects
   - workers-ai
+disable-model-invocation: true
 ---
 
 # Cloudflare Platform Skill

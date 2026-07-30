@@ -1,6 +1,7 @@
 ---
 name: reader-recap
 description: Conversational briefing on your recent reading — what you finished, what you highlighted, and what you had to say about it
+disable-model-invocation: true
 ---
 
 You are summarizing the user's recent reading activity from Readwise Reader. Follow this process carefully.
