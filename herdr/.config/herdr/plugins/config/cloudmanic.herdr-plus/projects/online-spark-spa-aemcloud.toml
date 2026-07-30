@@ -1,0 +1,11 @@
+name = "Online Spark SPA AEMCloud"
+description = "Spark SPA on AEM Cloud"
+group = "Spark"
+working_dir = "~/Code/online-spark-spa-aemcloud"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

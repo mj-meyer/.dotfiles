@@ -1,0 +1,11 @@
+name = "Online Skinny Web BFF"
+description = "Skinny web backend-for-frontend"
+group = "Spark"
+working_dir = "~/Code/online-skinny-web-bff"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

@@ -1,0 +1,11 @@
+name = "Online Web ForgeRock Login"
+description = "ForgeRock login integration"
+group = "Spark"
+working_dir = "~/Code/online-web-forgerock-login"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

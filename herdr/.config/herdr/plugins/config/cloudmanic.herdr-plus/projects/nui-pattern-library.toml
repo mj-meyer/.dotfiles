@@ -1,0 +1,11 @@
+name = "NUI Pattern Library"
+description = "NUI component pattern library"
+group = "Spark"
+working_dir = "~/Code/nui-pattern-library"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

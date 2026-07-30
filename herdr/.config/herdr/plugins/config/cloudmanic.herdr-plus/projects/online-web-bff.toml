@@ -1,0 +1,11 @@
+name = "Online Web BFF"
+description = "Web backend-for-frontend"
+group = "Spark"
+working_dir = "~/Code/online-web-bff"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

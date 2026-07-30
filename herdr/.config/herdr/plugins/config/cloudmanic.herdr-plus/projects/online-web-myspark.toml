@@ -1,0 +1,11 @@
+name = "Online Web MySpark"
+description = "MySpark web application"
+group = "Spark"
+working_dir = "~/Code/online-web-myspark"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

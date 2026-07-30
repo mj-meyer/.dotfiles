@@ -1,5 +1,6 @@
 name = "Dotfiles"
 description = "System configuration and dotfiles"
+group = "Personal"
 working_dir = "~/.dotfiles"
 
 [[tabs]]

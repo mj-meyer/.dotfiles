@@ -1,5 +1,6 @@
 name = "Notes"
 description = "Obsidian vault and personal notes"
+group = "Personal"
 # $VARS are expanded by herdr-plus (os.ExpandEnv), so this resolves to
 # ~/Notes on the work machine and ~/Documents/Notes personally.
 # NOTES_DIR is set in zsh/.zshrc.

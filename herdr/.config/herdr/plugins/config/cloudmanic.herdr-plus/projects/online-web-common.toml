@@ -1,0 +1,11 @@
+name = "Online Web Common"
+description = "Shared web common library"
+group = "Spark"
+working_dir = "~/Code/online-web-common"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

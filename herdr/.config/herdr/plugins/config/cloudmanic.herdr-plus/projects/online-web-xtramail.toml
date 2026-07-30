@@ -1,0 +1,11 @@
+name = "Online Web Xtramail"
+description = "Xtramail web application"
+group = "Spark"
+working_dir = "~/Code/online-web-xtramail"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

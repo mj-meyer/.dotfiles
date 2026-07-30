@@ -1,0 +1,11 @@
+name = "Online Web Universal Login App"
+description = "Universal login application"
+group = "Spark"
+working_dir = "~/Code/online-web-universal-login-app"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

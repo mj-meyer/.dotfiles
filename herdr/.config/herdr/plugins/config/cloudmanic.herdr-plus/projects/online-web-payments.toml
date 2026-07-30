@@ -1,0 +1,11 @@
+name = "Online Web Payments"
+description = "Web payments service"
+group = "Spark"
+working_dir = "~/Code/online-web-payments"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"

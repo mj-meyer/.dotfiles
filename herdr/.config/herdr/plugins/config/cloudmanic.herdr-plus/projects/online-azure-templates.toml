@@ -1,0 +1,11 @@
+name = "Online Azure Templates"
+description = "Azure infrastructure templates"
+group = "Spark"
+working_dir = "~/Code/online-azure-templates"
+
+[[tabs]]
+name = "editor"
+command = "nvim"
+
+[[tabs]]
+name = "terminal"
