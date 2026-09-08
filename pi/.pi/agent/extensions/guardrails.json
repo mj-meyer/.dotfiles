@@ -1,0 +1,5 @@
+{
+  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.17.0/schema.json",
+  "enabled": false,
+  "version": "0.16.2"
+}
