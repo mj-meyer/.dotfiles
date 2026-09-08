@@ -400,12 +400,34 @@ export NODE_OPTIONS="--use-system-ca"
 # Without this, every `pi` launch shells out to `npm view <pkg> version` for all
 # ~14 installed packages plus a `git ls-remote` for git-sourced ones. Each spawns
 # a full npm process AND a registry round-trip -- ~7s at home, 10-15s behind the
-# corporate proxy. Update deliberately instead, via the aliases below.
+# corporate proxy. Update deliberately instead, via the helpers below.
 export PI_OFFLINE=1
 
-# Run pi with update checks re-enabled (use occasionally to pick up new versions)
-alias pi-online='PI_OFFLINE=0 pi'
-alias piup='PI_OFFLINE=0 pi update'
+# Run pi with network operations re-enabled (use occasionally to pick up updates).
+# PI_OFFLINE is presence-sensitive in several Pi paths: `PI_OFFLINE=0` can
+# still disable update discovery, so it must be unset for this invocation.
+# Also clear PI_SKIP_VERSION_CHECK when `pi-online` is launched from Pi itself.
+# Keep the function name shell-portable: Bash cannot parse function names with
+# hyphens, so expose the user-facing hyphenated command as an alias instead.
+pi_online() (
+  unset PI_OFFLINE PI_SKIP_VERSION_CHECK
+  command pi "$@"
+)
+alias pi-online='pi_online'
+
+piup() {
+  pi_online update "$@"
+}
+
+# Keep macOS awake while the screen is locked. Each command prevents idle system
+# sleep for its duration; press Ctrl-C to stop it early.
+if command -v caffeinate >/dev/null 2>&1; then
+  alias awake='caffeinate -i'
+  alias awake-30m='caffeinate -i -t 1800'
+  alias awake-1h='caffeinate -i -t 3600'
+  alias awake-2h='caffeinate -i -t 7200'
+  alias awake-6h='caffeinate -i -t 21600'
+fi
 
 # Corporate proxy — auto-detect Spark network
 if host proxy.telecom.tcnz.net &>/dev/null 2>&1; then
