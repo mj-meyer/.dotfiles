@@ -138,6 +138,7 @@ dotfiles:
   stow_packages:
     - git
     - lazyvim
+    - lazygit
     - lvim
     - starship
     - tmux
