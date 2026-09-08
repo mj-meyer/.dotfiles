@@ -38,12 +38,20 @@ navigate_workspace_down = "shift+j"
 
 # Seamless ctrl+h/j/k/l across herdr panes and vim splits
 # (vim-herdr-navigation plugin, vim-tmux-navigator port)
-# herdr-plus: project picker (WezTerm sends cmd+o -> prefix+o)
+# herdr-nvim file picker (WezTerm sends cmd+o -> prefix+o)
 [[keys.command]]
 key = "prefix+o"
 type = "plugin_action"
-command = "cloudmanic.herdr-plus.projects"
-description = "open project"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
+
+# herdr-nvim: prefix+e is reserved for Herdr's edit-scrollback action, so use
+# prefix+shift+e for the persistent Neovim sidebar.
+[[keys.command]]
+key = "prefix+shift+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
 
 # worktrunk: worktree branch picker (WezTerm sends cmd+shift+o -> prefix+shift+o)
 [[keys.command]]
@@ -90,7 +98,7 @@ description = "navigate right (vim/herdr)"
 kitty_graphics = true
 
 [ui]
-agent_panel_sort = "spaces"
+agent_panel_sort = "priority"
 # Create tabs instantly like tmux (rename later with cmd+e)
 prompt_new_tab_name = false
 

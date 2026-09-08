@@ -83,8 +83,18 @@ local config = {
 		k.cmd_to_tmux_prefix("h", "p"), -- previous tab (tmux: previous window)
 		k.cmd_to_tmux_prefix("l", "n"), -- next tab     (tmux: next window)
 		k.cmd_to_tmux_prefix("g", "g"), -- herdr navigate mode (goto)
+		k.cmd_to_tmux_prefix("b", "b"), -- toggle herdr sidebar
+		-- toggle herdr-nvim sidebar (Cmd+Shift+B -> prefix+shift+e)
+		{
+			mods = "CMD|SHIFT",
+			key = "b",
+			action = act.Multiple({
+				act.SendKey({ mods = "CTRL", key = "b" }),
+				act.SendKey({ mods = "SHIFT", key = "e" }),
+			}),
+		},
 		k.cmd_to_tmux_prefix("e", "a"), -- rename tab in herdr (no-op in tmux)
-		-- herdr-plus project picker (prefix+o)
+		-- herdr-nvim file picker (prefix+o)
 		k.cmd_to_tmux_prefix("o", "o"),
 		-- worktrunk worktree picker (prefix+shift+o)
 		{
