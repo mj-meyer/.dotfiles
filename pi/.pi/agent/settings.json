@@ -4,36 +4,32 @@
       "~/Desktop/CleanShot*.png"
     ]
   },
-  "lastChangelogVersion": "0.82.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
-  "defaultThinkingLevel": "max",
+  "lastChangelogVersion": "0.87.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
-    "openai-codex/gpt-5.4",
     "anthropic/claude-haiku-4-5",
-    "opencode-go/glm-5.1",
     "opencode-go/minimax-m2.7",
-    "opencode-go/mimo-v2-omni",
-    "opencode-go/mimo-v2-pro",
     "opencode-go-anthropic/minimax-m2.7",
-    "anthropic/claude-sonnet-4-6",
-    "anthropic/claude-opus-4-7",
-    "openai-codex/gpt-5.5",
-    "anthropic/claude-opus-4-6",
-    "opencode-go/kimi-k2.6",
-    "github-copilot/gpt-5.4",
-    "github-copilot/gpt-5.5",
-    "github-copilot/gpt-5.4-mini",
     "github-copilot/claude-haiku-4.5",
-    "github-copilot/claude-sonnet-4.6",
-    "github-copilot/claude-opus-4.6",
     "github-copilot/claude-opus-4.8",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-6-astra",
+    "openai-codex/gpt-6-luna",
     "anthropic/claude-opus-5",
+    "anthropic/claude-opus-5-5",
+    "anthropic/claude-sonnet-5-5",
     "github-copilot/claude-opus-4.7",
-    "github-copilot/gemini-3.5-flash"
+    "github-copilot/claude-opus-5",
+    "github-copilot/claude-opus-5.5",
+    "github-copilot/claude-sonnet-5.5",
+    "anthropic/claude-opus-4-8",
+    "opencode-go/glm-5.3-flash",
+    "opencode-go/deepseek-v4-pro",
+    "opencode-go/deepseek-v4.1-flash",
+    "opencode-go/kimi-k2.7-code",
+    "opencode-go/grok-4.6",
+    "openai-codex/gpt-6.1-sol"
   ],
   "packages": [
     "npm:pi-subdir-context",
@@ -93,5 +89,28 @@
     },
     "fixedEditor": true
   },
-  "workingVibe": "star wars"
+  "workingVibe": "star wars",
+  "tuiMode": "fullscreen",
+  "outputPad": 1,
+  "compaction": {
+    "modelOverrides": {
+      "openai-codex/gpt-6.1-sol": {
+        "reserveTokens": 340000,
+        "keepRecentTokens": 30000
+      },
+      "anthropic/claude-sonnet-5-5": {
+        "reserveTokens": 840000,
+        "keepRecentTokens": 30000
+      },
+      "anthropic/claude-opus-5-5": {
+        "reserveTokens": 840000,
+        "keepRecentTokens": 30000
+      }
+    }
+  },
+  "subagents": {
+    "defaultSubagentOnlyExtensions": [
+      "~/.pi/agent/extensions/pi-to-PI-fix.ts"
+    ]
+  }
 }
